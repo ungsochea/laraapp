@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +21,23 @@ class UserController extends Controller
     public function index()
     {
         return User::latest()->paginate(10);
+    }
+
+    public function profile(){
+        return auth('api')->user();
+    }
+
+    public function updateProfile(Request $request){
+        $user= auth('api')->user();
+
+        if($request->photo){
+            $name=time().'.'.explode('/',explode(':',substr($request->photo,0,strpos($request->photo,';')))[1])[1];
+            \Image::make($request->photo)->save(public_path('img/profile/').$name);
+            // resize(80, 80, function ($constraint) {
+            //     $constraint->aspectRatio()
+        }
+
+        return ['message'=>"ok"];
     }
 
     /**
