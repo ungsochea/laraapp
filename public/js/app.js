@@ -5228,7 +5228,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(184)
+var listToStyles = __webpack_require__(188)
 
 /*
 type StyleObject = {
@@ -30690,7 +30690,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(141);
-module.exports = __webpack_require__(200);
+module.exports = __webpack_require__(207);
 
 
 /***/ }),
@@ -30703,11 +30703,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vform__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vform___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vform__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_progressbar__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Gate__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_router__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_progressbar__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_sweetalert2__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_sweetalert2__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -30721,16 +30722,19 @@ window.Vue = __webpack_require__(164);
 
 
 
+
+Vue.prototype.$gate = new __WEBPACK_IMPORTED_MODULE_2__Gate__["a" /* default */](window.user);
+
 window.Form = __WEBPACK_IMPORTED_MODULE_1_vform__["Form"];
 Vue.component(__WEBPACK_IMPORTED_MODULE_1_vform__["HasError"].name, __WEBPACK_IMPORTED_MODULE_1_vform__["HasError"]);
 Vue.component(__WEBPACK_IMPORTED_MODULE_1_vform__["AlertError"].name, __WEBPACK_IMPORTED_MODULE_1_vform__["AlertError"]);
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/dashboard', component: __webpack_require__(170) }, { path: '/developer', component: __webpack_require__(216) }, { path: '/profile', component: __webpack_require__(173) }, { path: '/users', component: __webpack_require__(176) }];
+var routes = [{ path: '/dashboard', component: __webpack_require__(171) }, { path: '/developer', component: __webpack_require__(174) }, { path: '/profile', component: __webpack_require__(177) }, { path: '/users', component: __webpack_require__(180) }];
 
-var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
+var router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]({
   mode: 'history',
   routes: routes // short for `routes: routes`
 });
@@ -30747,7 +30751,7 @@ Vue.filter('myDate', function (created) {
 
 //VueProgressBar
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_progressbar___default.a, {
+Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_progressbar___default.a, {
   color: 'rgb(143, 255, 199)',
   failedColor: 'red',
   height: '2px'
@@ -30755,9 +30759,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_progressbar___default.a, {
 
 //Sweet Alert
 
-window.swal = __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default.a;
+window.swal = __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default.a;
 
-var toast = __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default.a.mixin({
+var toast = __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default.a.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
@@ -30775,13 +30779,15 @@ window.Fire = new Vue();
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-Vue.component('passport-clients', __webpack_require__(181));
+Vue.component('passport-clients', __webpack_require__(185));
 
-Vue.component('passport-authorized-clients', __webpack_require__(187));
+Vue.component('passport-authorized-clients', __webpack_require__(191));
 
-Vue.component('passport-personal-access-tokens', __webpack_require__(192));
+Vue.component('passport-personal-access-tokens', __webpack_require__(196));
 
-Vue.component('example-component', __webpack_require__(197));
+Vue.component('not-found', __webpack_require__(201));
+
+Vue.component('example-component', __webpack_require__(204));
 
 var app = new Vue({
   el: '#app',
@@ -65295,6 +65301,39 @@ var AlertSuccess_Component = normalizeComponent(
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Gate = function () {
+    function Gate(user) {
+        _classCallCheck(this, Gate);
+
+        this.user = user;
+    }
+
+    _createClass(Gate, [{
+        key: 'isAdmin',
+        value: function isAdmin() {
+            return this.user.type === 'admin';
+        }
+    }, {
+        key: 'isUser',
+        value: function isUser() {
+            return this.user.type === 'user';
+        }
+    }]);
+
+    return Gate;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Gate);
+
+/***/ }),
+/* 170 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /**
   * vue-router v3.0.1
   * (c) 2017 Evan You
@@ -67921,15 +67960,15 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(171)
+var __vue_script__ = __webpack_require__(172)
 /* template */
-var __vue_template__ = __webpack_require__(172)
+var __vue_template__ = __webpack_require__(173)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -67968,7 +68007,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -67977,6 +68016,99 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "row justify-content-center" },
+      [_c("not-found")],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-040e2ab9", module.exports)
+  }
+}
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(175)
+/* template */
+var __vue_template__ = __webpack_require__(176)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Developer.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5932c622", Component.options)
+  } else {
+    hotAPI.reload("data-v-5932c622", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 175 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -67997,58 +68129,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 172 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Dashboard Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12" },
+        [
+          _c("passport-clients"),
+          _vm._v(" "),
+          _c("passport-authorized-clients"),
+          _vm._v(" "),
+          _c("passport-personal-access-tokens")
+        ],
+        1
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-040e2ab9", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5932c622", module.exports)
   }
 }
 
 /***/ }),
-/* 173 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(174)
+var __vue_script__ = __webpack_require__(178)
 /* template */
-var __vue_template__ = __webpack_require__(175)
+var __vue_template__ = __webpack_require__(179)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -68087,11 +68211,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 174 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -68338,39 +68465,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         updateInfo: function updateInfo() {
+            var _this = this;
+
+            this.$Progress.start();
             this.form.put('api/profile/')
             // axios.put('api/profile/'+this.form.id)
-            .then(function () {}).catch(function () {});
+            .then(function () {
+                Fire.$emit('AfterCreate');
+                _this.$$Progress.finish();
+            }).catch(function () {
+                _this.$Progress.fail();
+            });
         },
         updateProfile: function updateProfile(e) {
-            var _this = this;
+            var _this2 = this;
 
             // console.log('pic');
             var file = e.target.files[0];
-            // console.log(file);
+            // console.log(result);
             var reader = new FileReader();
-            reader.onloadend = function (file) {
-                // console.log('RESULT',reader.result)
-                _this.form.photo = reader.result;
-            };
-            reader.readAsDataURL(file);
+
+            if (file['size'] < 2111777) {
+                //check size file
+                reader.onloadend = function (file) {
+                    // console.log('RESULT',reader.result)
+                    _this2.form.photo = reader.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                swal({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'You are uploading a large file'
+                });
+            }
+        },
+        getProfilePhoto: function getProfilePhoto() {
+            var photo = this.form.photo.length > 200 ? this.form.photo : "img/profile/" + this.form.photo;
+            // return "img/profile/"+this.form.photo;
+            return photo;
+        },
+        loadProfile: function loadProfile() {
+            var _this3 = this;
+
+            axios.get("api/profile").then(function (_ref) {
+                var data = _ref.data;
+                return _this3.form.fill(data);
+            });
         }
     },
     mounted: function mounted() {
         console.log('Component mounted.');
     },
     created: function created() {
-        var _this2 = this;
+        var _this4 = this;
 
-        axios.get("api/profile").then(function (_ref) {
-            var data = _ref.data;
-            return _this2.form.fill(data);
+        // axios.get("api/profile").then(({data})=>(this.form.fill(data)));
+        this.loadProfile();
+        Fire.$on('AfterCreate', function () {
+            _this4.loadProfile();
         });
+        // Fire.$emit('AfterCreate');
     }
 });
 
 /***/ }),
-/* 175 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -68380,14 +68540,25 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "card card-widget widget-user" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "widget-user-image" }, [
+            _c("img", {
+              staticClass: "img-circle",
+              attrs: { src: _vm.getProfilePhoto(), alt: "User Avatar" }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card" }, [
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "tab-content" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "div",
@@ -68407,33 +68578,45 @@ var render = function() {
                         [_vm._v("Name")]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-10" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.name,
-                              expression: "form.name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            id: "inputName",
-                            placeholder: "Name"
-                          },
-                          domProps: { value: _vm.form.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.name,
+                                expression: "form.name"
                               }
-                              _vm.$set(_vm.form, "name", $event.target.value)
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("name")
+                            },
+                            attrs: {
+                              type: "text",
+                              id: "inputName",
+                              placeholder: "Name"
+                            },
+                            domProps: { value: _vm.form.name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "name", $event.target.value)
+                              }
                             }
-                          }
-                        })
-                      ])
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "name" }
+                          })
+                        ],
+                        1
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -68446,36 +68629,94 @@ var render = function() {
                         [_vm._v("Email")]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-10" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.email,
-                              expression: "form.email"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "email",
-                            id: "inputEmail",
-                            placeholder: "Email"
-                          },
-                          domProps: { value: _vm.form.email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.email,
+                                expression: "form.email"
                               }
-                              _vm.$set(_vm.form, "email", $event.target.value)
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("email")
+                            },
+                            attrs: {
+                              type: "email",
+                              id: "inputEmail",
+                              placeholder: "Email"
+                            },
+                            domProps: { value: _vm.form.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "email", $event.target.value)
+                              }
                             }
-                          }
-                        })
-                      ])
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "email" }
+                          })
+                        ],
+                        1
+                      )
                     ]),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-2 control-label",
+                          attrs: { for: "inputExperience" }
+                        },
+                        [_vm._v("bio")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
+                        [
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.bio,
+                                expression: "form.bio"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: { "is-invalid": _vm.form.errors.has("bio") },
+                            attrs: {
+                              id: "inputExperience",
+                              placeholder: "bio"
+                            },
+                            domProps: { value: _vm.form.bio },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "bio", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "bio" }
+                          })
+                        ],
+                        1
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c(
@@ -68496,7 +68737,60 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-2 control-label",
+                          attrs: { for: "inputSkills" }
+                        },
+                        [_vm._v("Password")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.password,
+                                expression: "form.password"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("password")
+                            },
+                            attrs: {
+                              type: "password",
+                              name: "password",
+                              placeholder: "Password"
+                            },
+                            domProps: { value: _vm.form.password },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "password",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "password" }
+                          })
+                        ],
+                        1
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
@@ -68531,62 +68825,51 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card card-widget widget-user" }, [
-      _c(
-        "div",
-        {
-          staticClass: "widget-user-header text-white",
-          staticStyle: { background: "url('/img/photo1.png') center center" }
-        },
-        [
-          _c("h3", { staticClass: "widget-user-username" }, [
-            _vm._v("Elizabeth Pierce")
-          ]),
-          _vm._v(" "),
-          _c("h5", { staticClass: "widget-user-desc" }, [
-            _vm._v("Web Designer")
+    return _c(
+      "div",
+      {
+        staticClass: "widget-user-header text-white",
+        staticStyle: { background: "url('/img/photo1.png') center center" }
+      },
+      [
+        _c("h3", { staticClass: "widget-user-username" }, [
+          _vm._v("Elizabeth Pierce")
+        ]),
+        _vm._v(" "),
+        _c("h5", { staticClass: "widget-user-desc" }, [_vm._v("Web Designer")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-4 border-right" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("3,200")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [_vm._v("SALES")])
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "widget-user-image" }, [
-        _c("img", {
-          staticClass: "img-circle",
-          attrs: { src: "/img/user3-128x128.jpg", alt: "User Avatar" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-4 border-right" }, [
-            _c("div", { staticClass: "description-block" }, [
-              _c("h5", { staticClass: "description-header" }, [
-                _vm._v("3,200")
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "description-text" }, [_vm._v("SALES")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-4 border-right" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("13,000")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [
+              _vm._v("FOLLOWERS")
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-4 border-right" }, [
-            _c("div", { staticClass: "description-block" }, [
-              _c("h5", { staticClass: "description-header" }, [
-                _vm._v("13,000")
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "description-text" }, [
-                _vm._v("FOLLOWERS")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-4" }, [
-            _c("div", { staticClass: "description-block" }, [
-              _c("h5", { staticClass: "description-header" }, [_vm._v("35")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "description-text" }, [
-                _vm._v("PRODUCTS")
-              ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-4" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("35")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [
+              _vm._v("PRODUCTS")
             ])
           ])
         ])
@@ -68821,44 +69104,6 @@ var staticRenderFns = [
         })
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-sm-2 control-label",
-          attrs: { for: "inputExperience" }
-        },
-        [_vm._v("Experience")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-10" }, [
-        _c("textarea", {
-          staticClass: "form-control",
-          attrs: { id: "inputExperience", placeholder: "Experience" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
-        _c("div", { staticClass: "checkbox" }, [
-          _c("label", [
-            _c("input", { attrs: { type: "checkbox" } }),
-            _vm._v(" I agree to the "),
-            _c("a", { attrs: { href: "#" } }, [_vm._v("terms and conditions")])
-          ])
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -68871,15 +69116,15 @@ if (false) {
 }
 
 /***/ }),
-/* 176 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(177)
+var __vue_script__ = __webpack_require__(181)
 /* template */
-var __vue_template__ = __webpack_require__(178)
+var __vue_template__ = __webpack_require__(182)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -68918,11 +69163,16 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 177 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69094,10 +69344,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loadUers: function loadUers() {
             var _this3 = this;
 
-            axios.get("api/user").then(function (_ref) {
-                var data = _ref.data;
-                return _this3.users = data.data;
-            });
+            if (this.$gate.isAdmin()) {
+                axios.get("api/user").then(function (_ref) {
+                    var data = _ref.data;
+                    return _this3.users = data.data;
+                });
+            }
         },
         createUser: function createUser() {
             var _this4 = this;
@@ -69128,7 +69380,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 178 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -69136,82 +69388,93 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row mt-5" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-tools" }, [
-              _c(
-                "button",
-                { staticClass: "btn btn-success", on: { click: _vm.newModal } },
-                [
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" }),
-                  _vm._v(" Add New")
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body table-responsive p-0" }, [
-            _c("table", { staticClass: "table table-hover" }, [
-              _c(
-                "tbody",
-                [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _vm._l(_vm.users, function(user) {
-                    return _c("tr", { key: user.id }, [
-                      _c("td", [_vm._v(_vm._s(user.id))]),
+    _vm.$gate.isAdmin()
+      ? _c("div", { staticClass: "row mt-5" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      on: { click: _vm.newModal }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-user-plus fa-fw" }),
+                      _vm._v(" Add New")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                _c("table", { staticClass: "table table-hover" }, [
+                  _c(
+                    "tbody",
+                    [
+                      _vm._m(1),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(user.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(user.email))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(_vm._f("myDate")(user.created_at)))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm._f("upText")(user.type)))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                _vm.editModal(user)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-edit blue" })]
-                        ),
-                        _vm._v("\n                    |\n                    "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                _vm.deleteUser(user.id)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-trash red" })]
-                        )
-                      ])
-                    ])
-                  })
-                ],
-                2
-              )
+                      _vm._l(_vm.users, function(user) {
+                        return _c("tr", { key: user.id }, [
+                          _c("td", [_vm._v(_vm._s(user.id))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.email))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(_vm._f("myDate")(user.created_at)))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(_vm._f("upText")(user.type)))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.editModal(user)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-edit blue" })]
+                            ),
+                            _vm._v(
+                              "\n                    |\n                    "
+                            ),
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.deleteUser(user.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-trash red" })]
+                            )
+                          ])
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ])
             ])
           ])
         ])
-      ])
-    ]),
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.$gate.isAdmin() ? _c("div", [_c("not-found")], 1) : _vm._e(),
     _vm._v(" "),
     _c(
       "div",
@@ -69619,14 +69882,14 @@ if (false) {
 }
 
 /***/ }),
-/* 179 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(t,o){ true?module.exports=o():"function"==typeof define&&define.amd?define(o):t.VueProgressBar=o()}(this,function(){"use strict";!function(){if("undefined"!=typeof document){var t=document.head||document.getElementsByTagName("head")[0],o=document.createElement("style"),i=" .__cov-progress { opacity: 1; z-index: 999999; } ";o.type="text/css",o.styleSheet?o.styleSheet.cssText=i:o.appendChild(document.createTextNode(i)),t.appendChild(o)}}();var t="undefined"!=typeof window,r={render:function(){var t=this,o=t.$createElement;return(t._self._c||o)("div",{staticClass:"__cov-progress",style:t.style})},staticRenderFns:[],name:"VueProgress",serverCacheKey:function(){return"Progress"},computed:{style:function(){var t=this.progress,o=t.options,i=!!o.show,e=o.location,s={"background-color":o.canSuccess?o.color:o.failedColor,opacity:o.show?1:0,position:o.position};return"top"===e||"bottom"===e?("top"===e?s.top="0px":s.bottom="0px",o.inverse?s.right="0px":s.left="0px",s.width=t.percent+"%",s.height=o.thickness,s.transition=(i?"width "+o.transition.speed+", ":"")+"opacity "+o.transition.opacity):"left"!==e&&"right"!==e||("left"===e?s.left="0px":s.right="0px",o.inverse?s.top="0px":s.bottom="0px",s.height=t.percent+"%",s.width=o.thickness,s.transition=(i?"height "+o.transition.speed+", ":"")+"opacity "+o.transition.opacity),s},progress:function(){return t?window.VueProgressBarEventBus.RADON_LOADING_BAR:{percent:0,options:{canSuccess:!0,show:!1,color:"rgb(19, 91, 55)",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},location:"top",autoRevert:!0,inverse:!1}}}}};return{install:function(o){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},i=(o.version.split(".")[0],"undefined"!=typeof window),e={$vm:null,state:{tFailColor:"",tColor:"",timer:null,cut:0},init:function(t){this.$vm=t},start:function(t){var o=this;this.$vm&&(t||(t=3e3),this.$vm.RADON_LOADING_BAR.percent=0,this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.state.cut=1e4/Math.floor(t),clearInterval(this.state.timer),this.state.timer=setInterval(function(){o.increase(o.state.cut*Math.random()),95<o.$vm.RADON_LOADING_BAR.percent&&o.$vm.RADON_LOADING_BAR.options.autoFinish&&o.finish()},100))},set:function(t){this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.$vm.RADON_LOADING_BAR.percent=Math.floor(t)},get:function(){return Math.floor(this.$vm.RADON_LOADING_BAR.percent)},increase:function(t){this.$vm.RADON_LOADING_BAR.percent=Math.min(99,this.$vm.RADON_LOADING_BAR.percent+Math.floor(t))},decrease:function(t){this.$vm.RADON_LOADING_BAR.percent=this.$vm.RADON_LOADING_BAR.percent-Math.floor(t)},hide:function(){var t=this;clearInterval(this.state.timer),this.state.timer=null,setTimeout(function(){t.$vm.RADON_LOADING_BAR.options.show=!1,o.nextTick(function(){setTimeout(function(){t.$vm.RADON_LOADING_BAR.percent=0},100),t.$vm.RADON_LOADING_BAR.options.autoRevert&&setTimeout(function(){t.revert()},300)})},this.$vm.RADON_LOADING_BAR.options.transition.termination)},pause:function(){clearInterval(this.state.timer)},finish:function(){this.$vm&&(this.$vm.RADON_LOADING_BAR.percent=100,this.hide())},fail:function(){this.$vm.RADON_LOADING_BAR.options.canSuccess=!1,this.$vm.RADON_LOADING_BAR.percent=100,this.hide()},setFailColor:function(t){this.$vm.RADON_LOADING_BAR.options.failedColor=t},setColor:function(t){this.$vm.RADON_LOADING_BAR.options.color=t},setLocation:function(t){this.$vm.RADON_LOADING_BAR.options.location=t},setTransition:function(t){this.$vm.RADON_LOADING_BAR.options.transition=t},tempFailColor:function(t){this.state.tFailColor=this.$vm.RADON_LOADING_BAR.options.failedColor,this.$vm.RADON_LOADING_BAR.options.failedColor=t},tempColor:function(t){this.state.tColor=this.$vm.RADON_LOADING_BAR.options.color,this.$vm.RADON_LOADING_BAR.options.color=t},tempLocation:function(t){this.state.tLocation=this.$vm.RADON_LOADING_BAR.options.location,this.$vm.RADON_LOADING_BAR.options.location=t},tempTransition:function(t){this.state.tTransition=this.$vm.RADON_LOADING_BAR.options.transition,this.$vm.RADON_LOADING_BAR.options.transition=t},revertColor:function(){this.$vm.RADON_LOADING_BAR.options.color=this.state.tColor,this.state.tColor=""},revertFailColor:function(){this.$vm.RADON_LOADING_BAR.options.failedColor=this.state.tFailColor,this.state.tFailColor=""},revertLocation:function(){this.$vm.RADON_LOADING_BAR.options.location=this.state.tLocation,this.state.tLocation=""},revertTransition:function(){this.$vm.RADON_LOADING_BAR.options.transition=this.state.tTransition,this.state.tTransition={}},revert:function(){this.$vm.RADON_LOADING_BAR.options.autoRevert&&(this.state.tColor&&this.revertColor(),this.state.tFailColor&&this.revertFailColor(),this.state.tLocation&&this.revertLocation(),!this.state.tTransition||void 0===this.state.tTransition.speed&&void 0===this.state.tTransition.opacity||this.revertTransition())},parseMeta:function(t){for(var o in t.func){var i=t.func[o];switch(i.call){case"color":switch(i.modifier){case"set":this.setColor(i.argument);break;case"temp":this.tempColor(i.argument)}break;case"fail":switch(i.modifier){case"set":this.setFailColor(i.argument);break;case"temp":this.tempFailColor(i.argument)}break;case"location":switch(i.modifier){case"set":this.setLocation(i.argument);break;case"temp":this.tempLocation(i.argument)}break;case"transition":switch(i.modifier){case"set":this.setTransition(i.argument);break;case"temp":this.tempTransition(i.argument)}}}}},s=function(t,o){for(var i,e,s=1;s<arguments.length;++s)for(i in e=arguments[s])Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);return t}({canSuccess:!0,show:!1,color:"#73ccec",position:"fixed",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},autoRevert:!0,location:"top",inverse:!1,autoFinish:!0},t),n=new o({data:{RADON_LOADING_BAR:{percent:0,options:s}}});i&&(window.VueProgressBarEventBus=n,e.init(n)),o.component("vue-progress-bar",r),o.prototype.$Progress=e}}});
 
 
 /***/ }),
-/* 180 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -72278,19 +72541,19 @@ if (typeof window !== 'undefined' && window.Sweetalert2){  window.Sweetalert2.ve
 "undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,"@-webkit-keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}body.swal2-toast-shown .swal2-container{position:fixed;background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-shown{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;box-shadow:0 0 .625em #d9d9d9;overflow-y:hidden}.swal2-popup.swal2-toast .swal2-header{flex-direction:row}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:initial;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon-text{font-size:2em;font-weight:700;line-height:1em}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 .0625em #fff,0 0 0 .125em rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:2em;height:2.8125em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.25em;left:-.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:2em 2em;transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;-webkit-transform-origin:0 2em;transform-origin:0 2em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:showSweetToast .5s;animation:showSweetToast .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:hideSweetToast .2s forwards;animation:hideSweetToast .2s forwards}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:animate-toast-success-tip .75s;animation:animate-toast-success-tip .75s}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:animate-toast-success-long .75s;animation:animate-toast-success-long .75s}@-webkit-keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@-webkit-keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-shown{top:auto;right:auto;bottom:auto;left:auto;background-color:transparent}body.swal2-no-backdrop .swal2-shown>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-shown.swal2-top{top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-top-left,body.swal2-no-backdrop .swal2-shown.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-top-end,body.swal2-no-backdrop .swal2-shown.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-shown.swal2-center{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-left,body.swal2-no-backdrop .swal2-shown.swal2-center-start{top:50%;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-end,body.swal2-no-backdrop .swal2-shown.swal2-center-right{top:50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom{bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom-left,body.swal2-no-backdrop .swal2-shown.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-bottom-end,body.swal2-no-backdrop .swal2-shown.swal2-bottom-right{right:0;bottom:0}.swal2-container{display:flex;position:fixed;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:10px;background-color:transparent;z-index:1060;overflow-x:hidden;-webkit-overflow-scrolling:touch}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-container.swal2-fade{transition:background-color .1s}.swal2-container.swal2-shown{background-color:rgba(0,0,0,.4)}.swal2-popup{display:none;position:relative;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border-radius:.3125em;background:#fff;font-family:inherit;font-size:1rem;box-sizing:border-box}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-popup .swal2-header{display:flex;flex-direction:column;align-items:center}.swal2-popup .swal2-title{display:block;position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-popup .swal2-actions{flex-wrap:wrap;align-items:center;justify-content:center;margin:1.25em auto 0;z-index:1}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-confirm{width:2.5em;height:2.5em;margin:.46875em;padding:0;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent;cursor:default;box-sizing:border-box;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-popup .swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{display:inline-block;width:15px;height:15px;margin-left:5px;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff;content:'';-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal}.swal2-popup .swal2-styled{margin:.3125em;padding:.625em 2em;font-weight:500;box-shadow:none}.swal2-popup .swal2-styled:not([disabled]){cursor:pointer}.swal2-popup .swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#3085d6;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled:focus{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(50,100,150,.4)}.swal2-popup .swal2-styled::-moz-focus-inner{border:0}.swal2-popup .swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-popup .swal2-image{max-width:100%;margin:1.25em auto}.swal2-popup .swal2-close{position:absolute;top:0;right:0;justify-content:center;width:1.2em;height:1.2em;padding:0;transition:color .1s ease-out;border:none;border-radius:0;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer;overflow:hidden}.swal2-popup .swal2-close:hover{-webkit-transform:none;transform:none;color:#f27474}.swal2-popup>.swal2-checkbox,.swal2-popup>.swal2-file,.swal2-popup>.swal2-input,.swal2-popup>.swal2-radio,.swal2-popup>.swal2-select,.swal2-popup>.swal2-textarea{display:none}.swal2-popup .swal2-content{justify-content:center;margin:0;padding:0;color:#545454;font-size:1.125em;font-weight:300;line-height:normal;z-index:1;word-wrap:break-word}.swal2-popup #swal2-content{text-align:center}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-radio,.swal2-popup .swal2-select,.swal2-popup .swal2-textarea{margin:1em auto}.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-textarea{width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;font-size:1.125em;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);box-sizing:border-box}.swal2-popup .swal2-file.swal2-inputerror,.swal2-popup .swal2-input.swal2-inputerror,.swal2-popup .swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-popup .swal2-file:focus,.swal2-popup .swal2-input:focus,.swal2-popup .swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-popup .swal2-file::-webkit-input-placeholder,.swal2-popup .swal2-input::-webkit-input-placeholder,.swal2-popup .swal2-textarea::-webkit-input-placeholder{color:#ccc}.swal2-popup .swal2-file:-ms-input-placeholder,.swal2-popup .swal2-input:-ms-input-placeholder,.swal2-popup .swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::-ms-input-placeholder,.swal2-popup .swal2-input::-ms-input-placeholder,.swal2-popup .swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::placeholder,.swal2-popup .swal2-input::placeholder,.swal2-popup .swal2-textarea::placeholder{color:#ccc}.swal2-popup .swal2-range input{width:80%}.swal2-popup .swal2-range output{width:20%;font-weight:600;text-align:center}.swal2-popup .swal2-range input,.swal2-popup .swal2-range output{height:2.625em;margin:1em auto;padding:0;font-size:1.125em;line-height:2.625em}.swal2-popup .swal2-input{height:2.625em;padding:0 .75em}.swal2-popup .swal2-input[type=number]{max-width:10em}.swal2-popup .swal2-file{font-size:1.125em}.swal2-popup .swal2-textarea{height:6.75em;padding:.75em}.swal2-popup .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;color:#545454;font-size:1.125em}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-radio{align-items:center;justify-content:center}.swal2-popup .swal2-checkbox label,.swal2-popup .swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-popup .swal2-checkbox input,.swal2-popup .swal2-radio input{margin:0 .4em}.swal2-popup .swal2-validation-message{display:none;align-items:center;justify-content:center;padding:.625em;background:#f0f0f0;color:#666;font-size:1em;font-weight:300;overflow:hidden}.swal2-popup .swal2-validation-message::before{display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center;content:'!';zoom:normal}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}.swal2-icon{position:relative;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;line-height:5em;cursor:default;box-sizing:content-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;zoom:normal}.swal2-icon-text{font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:3.75em 3.75em;transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 3.75em;transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;top:-.25em;left:-.25em;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%;z-index:2;box-sizing:content-box}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;top:.5em;left:1.625em;width:.4375em;height:5.625em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);z-index:1}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;height:.3125em;border-radius:.125em;background-color:#a5dc86;z-index:2}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.875em;width:1.5625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-progresssteps{align-items:center;margin:0 0 1.25em;padding:0;font-weight:600}.swal2-progresssteps li{display:inline-block;position:relative}.swal2-progresssteps .swal2-progresscircle{width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center;z-index:20}.swal2-progresssteps .swal2-progresscircle:first-child{margin-left:0}.swal2-progresssteps .swal2-progresscircle:last-child{margin-right:0}.swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep{background:#3085d6}.swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep~.swal2-progresscircle{background:#add8e6}.swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep~.swal2-progressline{background:#add8e6}.swal2-progresssteps .swal2-progressline{width:2.5em;height:.4em;margin:0 -1px;background:#3085d6;z-index:10}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-show.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-hide.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-animate-success-icon .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-animate-error-icon{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-animate-error-icon .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}@-webkit-keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:initial!important}}");
 
 /***/ }),
-/* 181 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(182)
+  __webpack_require__(186)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(185)
+var __vue_script__ = __webpack_require__(189)
 /* template */
-var __vue_template__ = __webpack_require__(186)
+var __vue_template__ = __webpack_require__(190)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -72329,13 +72592,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 182 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(183);
+var content = __webpack_require__(187);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -72355,7 +72618,7 @@ if(false) {
 }
 
 /***/ }),
-/* 183 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(false);
@@ -72369,7 +72632,7 @@ exports.push([module.i, "\n.action-link[data-v-1552a5b6] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 184 */
+/* 188 */
 /***/ (function(module, exports) {
 
 /**
@@ -72402,7 +72665,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 185 */
+/* 189 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72766,7 +73029,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 186 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73327,19 +73590,19 @@ if (false) {
 }
 
 /***/ }),
-/* 187 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(188)
+  __webpack_require__(192)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(190)
+var __vue_script__ = __webpack_require__(194)
 /* template */
-var __vue_template__ = __webpack_require__(191)
+var __vue_template__ = __webpack_require__(195)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73378,13 +73641,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 188 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(189);
+var content = __webpack_require__(193);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -73404,7 +73667,7 @@ if(false) {
 }
 
 /***/ }),
-/* 189 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(false);
@@ -73418,7 +73681,7 @@ exports.push([module.i, "\n.action-link[data-v-397d14ca] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 190 */
+/* 194 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73538,7 +73801,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 191 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73647,19 +73910,19 @@ if (false) {
 }
 
 /***/ }),
-/* 192 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(193)
+  __webpack_require__(197)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(195)
+var __vue_script__ = __webpack_require__(199)
 /* template */
-var __vue_template__ = __webpack_require__(196)
+var __vue_template__ = __webpack_require__(200)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73698,13 +73961,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 193 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(194);
+var content = __webpack_require__(198);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -73724,7 +73987,7 @@ if(false) {
 }
 
 /***/ }),
-/* 194 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(false);
@@ -73738,7 +74001,7 @@ exports.push([module.i, "\n.action-link[data-v-49962cc0] {\n    cursor: pointer;
 
 
 /***/ }),
-/* 195 */
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74060,7 +74323,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 196 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -74438,15 +74701,1187 @@ if (false) {
 }
 
 /***/ }),
-/* 197 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(198)
+var __vue_script__ = __webpack_require__(202)
 /* template */
-var __vue_template__ = __webpack_require__(199)
+var __vue_template__ = __webpack_require__(203)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/NotFound.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2ce50e5a", Component.options)
+  } else {
+    hotAPI.reload("data-v-2ce50e5a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("h3", [_vm._v("Not Found what you's looking")]),
+        _vm._v(" "),
+        _c(
+          "svg",
+          {
+            attrs: {
+              id: "b06587d5-0dba-482d-8c16-9624be0edba5",
+              "data-name": "Layer 1",
+              xmlns: "http://www.w3.org/2000/svg",
+              "xmlns:xlink": "http://www.w3.org/1999/xlink",
+              width: "600",
+              height: "100%",
+              viewBox: "0 0 1008.11 779.57"
+            }
+          },
+          [
+            _c(
+              "defs",
+              [
+                _c(
+                  "linearGradient",
+                  {
+                    attrs: {
+                      id: "a2d550d8-b94a-4b4e-8cdf-b12633d149de",
+                      x1: "499.26",
+                      y1: "786.28",
+                      x2: "499.26",
+                      y2: "342.21",
+                      gradientTransform: "matrix(-1, 0, 0, 1, 1188.16, 0)",
+                      gradientUnits: "userSpaceOnUse"
+                    }
+                  },
+                  [
+                    _c("stop", {
+                      attrs: {
+                        offset: "0",
+                        "stop-color": "gray",
+                        "stop-opacity": "0.25"
+                      }
+                    }),
+                    _c("stop", {
+                      attrs: {
+                        offset: "0.54",
+                        "stop-color": "gray",
+                        "stop-opacity": "0.12"
+                      }
+                    }),
+                    _c("stop", {
+                      attrs: {
+                        offset: "1",
+                        "stop-color": "gray",
+                        "stop-opacity": "0.1"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _c("linearGradient", {
+                  attrs: {
+                    id: "a292624c-a529-40fd-b6b9-058cc3ca33ba",
+                    x1: "1707.38",
+                    y1: "783.9",
+                    x2: "1707.38",
+                    y2: "326.53",
+                    gradientTransform: "translate(-1462.23)",
+                    "xlink:href": "#a2d550d8-b94a-4b4e-8cdf-b12633d149de"
+                  }
+                })
+              ],
+              1
+            ),
+            _c("title", [_vm._v("usability testing")]),
+            _c("ellipse", {
+              attrs: {
+                cx: "365.75",
+                cy: "707.07",
+                rx: "363.97",
+                ry: "44.52",
+                fill: "#4285f4",
+                opacity: "0.1"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "20.48",
+                width: "987.63",
+                height: "538.66",
+                rx: "7.65",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M1104.05,67.87V93.73H116.42V67.87a7.65,7.65,0,0,1,7.66-7.65H1096.4A7.64,7.64,0,0,1,1104.05,67.87Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#65617d"
+              }
+            }),
+            _c("circle", {
+              attrs: {
+                cx: "35.72",
+                cy: "16.76",
+                r: "6.52",
+                fill: "#fa5959",
+                opacity: "0.8"
+              }
+            }),
+            _c("circle", {
+              attrs: {
+                cx: "53.29",
+                cy: "16.76",
+                r: "6.52",
+                fill: "#fed253",
+                opacity: "0.8"
+              }
+            }),
+            _c("circle", {
+              attrs: {
+                cx: "70.87",
+                cy: "16.76",
+                r: "6.52",
+                fill: "#8ccf4d",
+                opacity: "0.8"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "64.35",
+                y: "68.32",
+                width: "480.48",
+                height: "223.11",
+                rx: "7.65",
+                fill: "#4285f4",
+                opacity: "0.2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "64.35",
+                y: "359.46",
+                width: "480.48",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#fff"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "64.35",
+                y: "391.78",
+                width: "480.48",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#fff"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "64.35",
+                y: "424.09",
+                width: "480.48",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#fff"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "64.35",
+                y: "456.41",
+                width: "480.48",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#fff"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "64.35",
+                y: "488.72",
+                width: "480.48",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#fff"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "600.66",
+                y: "68.32",
+                width: "352.06",
+                height: "435.71",
+                rx: "7.65",
+                fill: "#fff"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "118.52",
+                width: "63.5",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#4285f4",
+                opacity: "0.2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "147.43",
+                width: "315.78",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "176.35",
+                width: "315.78",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "234.17",
+                width: "63.5",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#4285f4",
+                opacity: "0.2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "263.09",
+                width: "315.78",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "292",
+                width: "315.78",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "349.83",
+                width: "63.5",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#4285f4",
+                opacity: "0.2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "378.74",
+                width: "315.78",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "620.22",
+                y: "407.65",
+                width: "315.78",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "867.97",
+                y: "465.48",
+                width: "63.5",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#4285f4"
+              }
+            }),
+            _c("rect", {
+              attrs: {
+                x: "481.33",
+                y: "307.31",
+                width: "63.5",
+                height: "15.31",
+                rx: "1.89",
+                fill: "#4285f4"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M601.5,395.88a16.06,16.06,0,0,0,3.35,3.39c.84.69,1.69,1.39,2.58,2l.78.52a1,1,0,0,0-.08.14,2,2,0,0,0-.23,1.25,2.66,2.66,0,0,0,1,1.28,13.21,13.21,0,0,1,4,7.28c.31,1.62-.78,3.35-.71,5a14.42,14.42,0,0,0,1.27,4.66c1.36,3.47,2.81,7.06,5.54,9.59a30.94,30.94,0,0,0,6.21,15.31c2.87,3.68,6.7,6.45,10.47,9.18a19.86,19.86,0,0,0,3.88,2.43,21,21,0,0,0,3.83,1A197.51,197.51,0,0,0,677,462.77q.48,10.08.41,20.18a8.49,8.49,0,0,1-.46,3.26,14.78,14.78,0,0,1-2,2.73c-2.59,3.44-2.72,8.09-2.5,12.39a114.47,114.47,0,0,0,1.75,15c1.17,6.34.1,13.35,2.35,19.38.89,2.38,1.78,4.77,2.66,7.15a6.24,6.24,0,0,1,.53,2.11c0,1.57-1,2.9-1.8,4.26a12.26,12.26,0,0,0-1.56,6.49,1.31,1.31,0,0,0,.19.73c.29.39.88.36,1.37.28a59.65,59.65,0,0,1,6-.55,12.15,12.15,0,0,0-1,1.42,21.92,21.92,0,0,0-1.27,2.61,24.8,24.8,0,0,0-1.69,4.67,5.34,5.34,0,0,0-.17.71c-.11.48-.21,1-.29,1.45a48.25,48.25,0,0,0-.52,8.58c-.28,5.35-.55,10.93-1.07,12.57-.73,2.31.18,6,1.08,9.53a22.68,22.68,0,0,0,1.3,7.14,43.67,43.67,0,0,0,.87,7.53q4.63,26.11,9.88,52.13c.31,1.5.61,3,1,4.48a36.46,36.46,0,0,0,6.69,13.23,60.22,60.22,0,0,1,7,11.19c-.2.94-.41,1.89-.64,2.83-2,8.3-4.56,16.48-5.47,25-.36,3.38-.46,6.86-1.8,10-.68,1.59-1.68,3.1-1.82,4.83a5.35,5.35,0,0,0,.74,3.13l-.66.54-.37.3c-2.54,2-5.94,2.43-9.07,3.25s-6.49,2.46-7.46,5.57a4.25,4.25,0,0,0-.15.59c-.57,2.86,1.16,5.9,3.6,7.58,2.6,1.79,5.84,2.34,9,2.75s6.36.7,9.19,2.11c2.45,1.21,4.51,3.2,7.1,4.08l.47.13c-.59.35-1.17.69-1.78,1a26.75,26.75,0,0,1-8.57,2.73c-3,.41-6.62.61-8.17,3.24a0,0,0,0,0,0,0c-1.27,2.17-.35,5.11,1.48,6.83s4.37,2.48,6.82,3a122.37,122.37,0,0,0,17,2.11l5.54.43c5.41.41,10.83.83,16.27.85a111.68,111.68,0,0,0,20-1.74,1.71,1.71,0,0,0,1.83-2,98,98,0,0,0-2.46-20.18c-.46-2-3.17.73-4.68,2.44-.21-1-.43-2-.69-2.93l1.19-.56a4.37,4.37,0,0,0,2.18-1.82,4.51,4.51,0,0,0,.23-2.1c-.22-4.36-.49-8.88-2.56-12.71a26.66,26.66,0,0,0-5-6.16,234.72,234.72,0,0,0-5-40.78c-1.53-6.83-3.43-13.74-7.38-19.52-.5-.72-1-1.44-1.57-2.17a176.34,176.34,0,0,0-2.38-19.59,5,5,0,0,1,0-2.61,8.36,8.36,0,0,1,1.44-2c2.38-3.07,1.41-7.43,1.13-11.31-.39-5.56.92-11.09,2.23-16.52l4.83-20.09a31.71,31.71,0,0,1,1.7-5.57,54.23,54.23,0,0,1,4.35-7,39.52,39.52,0,0,0,6.06-23.87c.92.33,1.83.66,2.73,1,.68-5.61-1.69-12,0-17.25a22.11,22.11,0,0,0,6.84-8.15c1.33-3,1.7-6.3,3.09-9.24.78-1.66,1.88-3.18,2.34-5,.68-2.66-.18-5.46-.14-8.21.09-6,4.42-11.53,3.49-17.43-.45-2.8-2.08-5.41-2-8.25a14,14,0,0,1,1.15-4.46c3.3-8.71,6.53-18,4.85-27.15-.43-2.35-1.19-4.68-1.06-7.06.14-2.73,1.43-5.38,1-8.09a6.28,6.28,0,0,0-1.21-2.83,34.28,34.28,0,0,0,3-5.73,8.26,8.26,0,0,0,.79-3.67,6.48,6.48,0,0,0-2.58-4.36,26.41,26.41,0,0,0-4.5-2.59,4,4,0,0,1-1.31-.94,10.51,10.51,0,0,1-.74-1.41c-.88-1.53-2.8-2-4.3-2.93-5.45-3.33-4.93-11.9-9.58-16.28a9.32,9.32,0,0,0-11.67-.62,2.76,2.76,0,0,1-1.64.81,3.14,3.14,0,0,1-1.59-.85,6.44,6.44,0,0,0-3.93-1.09,37.44,37.44,0,0,1-1.1-10.44l.42,0a5.6,5.6,0,0,0,1.63-.19c2.39-.69,3.75-3.17,4.73-5.47a43.5,43.5,0,0,0,2.1-6c.05-.2.09-.39.14-.59,4.58,3.22,9.9,6.59,11.18,5.88,2.34-1.29-10.5-10.43-10.5-10.43l0,0h0c1.51-1.34,2.35-3.76,2.73-5.9a32.08,32.08,0,0,0,.1-12.91c-1-4.21-3.53-8.22-7.37-10.19-1.7-.88-3.76-1.48-5-2.83h0a3.53,3.53,0,0,1-.49-.66h0a3.9,3.9,0,0,1-.19-.35,4.34,4.34,0,0,0-.54-1.05c-.7-.82-2-.57-3-.44l-.35,0h-.28l-.29,0c-3.81.08-7.5-2.05-11.35-2.05-4.22,0-7.82,2.45-11.53,4.13-.75.34-1.46.65-2.13,1-2.33,1.09-4.16,2.24-5.33,4.86a7.45,7.45,0,0,0-1.55,3,8.23,8.23,0,0,0-.2,1.54,25.55,25.55,0,0,0,11.49,42.87c.09.25.19.5.27.76a21.83,21.83,0,0,1,1.11,7.13c0,.17,0,.34,0,.52a19.35,19.35,0,0,0-5.51,2.24,10.68,10.68,0,0,0-4.66,5.71c-.05.19-.1.37-.14.54a14.43,14.43,0,0,0-4.2-.72,4.5,4.5,0,0,0-3.61,1.08,3.48,3.48,0,0,0-.68,1.39c-.49.45-.58,1.24-.93,1.84-1.07,1.88-3.86,1.26-6,1.78-2.28.56-4.08,2.7-6.42,2.71a11.71,11.71,0,0,0-2.7-.1c-.88.22-1.57,1.43-.9,2a2.86,2.86,0,0,0-2.7,1.3c-.65.84-1.07,1.84-1.79,2.63a2.72,2.72,0,0,0-2.78-1.08,10,10,0,0,0-2.94,1.16,4.37,4.37,0,0,1-1.3.45,5.26,5.26,0,0,1-1.58-.14,12.64,12.64,0,0,0-7.4,1c-2,1-4-.81-6.24-.95a3.42,3.42,0,0,1-2.28-.71,4.37,4.37,0,0,1-.86-1.8,8.94,8.94,0,0,0-6.54-5.79,7.62,7.62,0,0,0-4.47-9.39,8.14,8.14,0,0,0-2.8-7.08,11.49,11.49,0,0,1-1.4-1.1,6.66,6.66,0,0,1-1.3-2.4q-1-2.62-2-5.25c-.87-.18-1.56-.54-2.39-.68,0-.18,0-.36,0-.54a17.43,17.43,0,0,0-.9-5.28,29.43,29.43,0,0,0-4.24-7.7c-1.89-2.65-4-5.25-6.81-6.85a27.23,27.23,0,0,0-2.9-1.34l-5.11-2.11a2.56,2.56,0,0,0-.93-.24c-1.38,0-1.63,2.12-.85,3.26,1.56,2.29,5.06,2.93,6.05,5.53a3.94,3.94,0,0,0-3.65,2.85,2,2,0,0,1-.49,1.14c-.45.37-1.16.16-1.67.44-.91.48-.51,1.84-.61,2.87a13.34,13.34,0,0,1-.93,2.59A5.52,5.52,0,0,0,601.5,395.88ZM724,754.15l-.12-1.58c.11.28.21.57.32.85q1.35,3.54,3,7l-.19-.09a8.41,8.41,0,0,0-2.44-.7c-.22,0-.45-.05-.68-.06A19,19,0,0,0,724,754.15Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "url(#a2d550d8-b94a-4b4e-8cdf-b12633d149de)"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M710.15,409.44c-.1,3.73-1.36,7.35-1.56,11.07,11,.55,21.83-4.78,32.7-3.15-3-2-4.66-5.51-5.62-9a37.28,37.28,0,0,1-1.07-13.83,6.52,6.52,0,0,1,.13-.77c.41-1.82,1.45-4.4,1.17-5.84-.37-1.9-2.16-1.52-3.77-1.41a138.9,138.9,0,0,0-14.66,1.89c-1.27.22-13.58,3.29-13.76,3a58.23,58.23,0,0,1,5.33,11A21.65,21.65,0,0,1,710.15,409.44Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#ee8e9e"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M601.5,397.91a15.83,15.83,0,0,0,3.35,3.39c.84.68,1.69,1.38,2.58,2a11.14,11.14,0,0,0,5.5,2.23c2.61.18,8.17-1.36,9.8-3.6a6.52,6.52,0,0,0,.93-3.75,17.23,17.23,0,0,0-.9-5.25,29.26,29.26,0,0,0-4.24-7.67c-1.89-2.63-4-5.22-6.81-6.81a25.33,25.33,0,0,0-2.9-1.33L603.7,375a2.56,2.56,0,0,0-.93-.24c-1.38,0-1.63,2.11-.85,3.24,1.56,2.28,5.06,2.92,6.05,5.51a3.9,3.9,0,0,0-3.65,2.83,2,2,0,0,1-.49,1.14c-.45.36-1.16.16-1.67.43-.91.48-.51,1.84-.61,2.86a13.74,13.74,0,0,1-.93,2.58A5.43,5.43,0,0,0,601.5,397.91Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#ee8e9e"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M753,772c-.85-.84-2.23-.7-3.41-.51A126.86,126.86,0,0,1,730.37,773c-.8-3.92,1.53-7.74,2.28-11.67a10.5,10.5,0,0,1,.76-3c.91-1.74,3-2.53,4.86-2.93,3.45-.73,8.85-2,10.78,1.47C751.36,761.1,752.1,767.29,753,772Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#65617d"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M682.73,757.13c2.6,1.78,5.84,2.33,9,2.74s6.36.7,9.19,2.09c2.45,1.21,4.51,3.19,7.1,4.06a14.75,14.75,0,0,0,7.38.12c2.91-.55,6-1.61,7.58-4.12,1.4-2.24,1.25-5.07,1.06-7.7-.23-3-.44-6-.66-8.93a4.32,4.32,0,0,0-.56-2.16c-2.1-3.07-7.22,1.28-10,1.28-4.34,0-9-2.36-12.13-5.24a3.88,3.88,0,0,0-.94-.71c-1.24-.55-2.47.47-3.57,1.37l-.37.3c-2.54,2-5.94,2.42-9.07,3.23s-6.49,2.45-7.46,5.54a4.39,4.39,0,0,0-.15.6C678.56,752.44,680.29,755.47,682.73,757.13Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M682.73,757.13c2.6,1.78,5.84,2.33,9,2.74s6.36.7,9.19,2.09c2.45,1.21,4.51,3.19,7.1,4.06a14.75,14.75,0,0,0,7.38.12c2.91-.55,6-1.61,7.58-4.12,1.4-2.24,1.25-5.07,1.06-7.7-.23-3-.44-6-.66-8.93a4.32,4.32,0,0,0-.56-2.16c-2.1-3.07-7.22,1.28-10,1.28-4.34,0-9-2.36-12.13-5.24a3.88,3.88,0,0,0-.94-.71c-1.24-.55-2.47.47-3.57,1.37l-.37.3c-2.54,2-5.94,2.42-9.07,3.23s-6.49,2.45-7.46,5.54a4.39,4.39,0,0,0-.15.6C678.56,752.44,680.29,755.47,682.73,757.13Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.05"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M682.73,758.13c2.6,1.78,5.84,2.33,9,2.74s6.36.7,9.19,2.09c2.45,1.21,4.51,3.19,7.1,4.06a14.75,14.75,0,0,0,7.38.12,12.19,12.19,0,0,0,7.58-5.12c1.4-2.24,1.25-5.07,1.06-7.7-.23-3-.44-6-.66-8.93a4.32,4.32,0,0,0-.56-2.16c-2.1-3.07-7.22,1.28-10,1.28-4.34,0-9-2.36-12.13-5.24a3.88,3.88,0,0,0-.94-.71c-1.24-.55-2.47.47-3.57,1.37a25.9,25.9,0,0,0,3,6.3,13.15,13.15,0,0,0,9.56,6c1.94.14,3.93-.24,5.81.26s3.62,2.42,3,4.24-2.95,2.17-4.84,2.27a21.46,21.46,0,0,1-7.88-.56c-1.54-.51-3-1.36-4.44-2-6.37-2.63-14.4-1.16-19.65-5.61a11.24,11.24,0,0,0-1.61-1.23C677.75,752.48,680.29,756.47,682.73,758.13Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M682.73,758.13c2.6,1.78,5.84,2.33,9,2.74s6.36.7,9.19,2.09c2.45,1.21,4.51,3.19,7.1,4.06a14.75,14.75,0,0,0,7.38.12,12.19,12.19,0,0,0,7.58-5.12c1.4-2.24,1.25-5.07,1.06-7.7-.23-3-.44-6-.66-8.93a4.32,4.32,0,0,0-.56-2.16c-2.1-3.07-7.22,1.28-10,1.28-4.34,0-9-2.36-12.13-5.24a3.88,3.88,0,0,0-.94-.71c-1.24-.55-2.47.47-3.57,1.37a25.9,25.9,0,0,0,3,6.3,13.15,13.15,0,0,0,9.56,6c1.94.14,3.93-.24,5.81.26s3.62,2.42,3,4.24-2.95,2.17-4.84,2.27a21.46,21.46,0,0,1-7.88-.56c-1.54-.51-3-1.36-4.44-2-6.37-2.63-14.4-1.16-19.65-5.61a11.24,11.24,0,0,0-1.61-1.23C677.75,752.48,680.29,756.47,682.73,758.13Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.05"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M751.76,563.48a39.1,39.1,0,0,1-5.37,28.86,53.79,53.79,0,0,0-4.35,7,31.4,31.4,0,0,0-1.7,5.54l-4.83,20c-1.31,5.4-2.62,10.9-2.23,16.43.28,3.86,1.25,8.2-1.13,11.25a8.51,8.51,0,0,0-1.44,2,5,5,0,0,0,0,2.6c2.44,14.51,4.25,29.68-.16,43.72-4,12.73-4.23,26.83-7.63,39.72a8.87,8.87,0,0,1-2.11,4.41,7,7,0,0,1-3.17,1.5c-5,1.2-10.3-.2-15-2.37-3.28-1.52-6.82-4.19-6.54-7.8.14-1.71,1.14-3.22,1.82-4.8,1.34-3.1,1.44-6.57,1.8-9.93.91-8.43,3.51-16.58,5.47-24.83s3.3-16.87,1.64-25.19a219.78,219.78,0,0,0-16.21-49.86,6,6,0,0,0-1.48-2.23A15.57,15.57,0,0,1,687,618a6.27,6.27,0,0,1-1-2.61c-.73-2.63-2.9-4.57-4.36-6.89-3.68-5.84-2.51-13.32-2.37-20.22.13-6.7-.84-13.47.26-20.09s4.89-13.39,11.27-15.46c3.16-1,6.58-.79,9.89-.47C718.29,554,735.31,557.18,751.76,563.48Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M751.76,563.48a39.1,39.1,0,0,1-5.37,28.86,53.79,53.79,0,0,0-4.35,7,31.4,31.4,0,0,0-1.7,5.54l-4.83,20c-1.31,5.4-2.62,10.9-2.23,16.43.28,3.86,1.25,8.2-1.13,11.25a8.51,8.51,0,0,0-1.44,2,5,5,0,0,0,0,2.6c2.44,14.51,4.25,29.68-.16,43.72-4,12.73-4.23,26.83-7.63,39.72a8.87,8.87,0,0,1-2.11,4.41,7,7,0,0,1-3.17,1.5c-5,1.2-10.3-.2-15-2.37-3.28-1.52-6.82-4.19-6.54-7.8.14-1.71,1.14-3.22,1.82-4.8,1.34-3.1,1.44-6.57,1.8-9.93.91-8.43,3.51-16.58,5.47-24.83s3.3-16.87,1.64-25.19a219.78,219.78,0,0,0-16.21-49.86,6,6,0,0,0-1.48-2.23A15.57,15.57,0,0,1,687,618a6.27,6.27,0,0,1-1-2.61c-.73-2.63-2.9-4.57-4.36-6.89-3.68-5.84-2.51-13.32-2.37-20.22.13-6.7-.84-13.47.26-20.09s4.89-13.39,11.27-15.46c3.16-1,6.58-.79,9.89-.47C718.29,554,735.31,557.18,751.76,563.48Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.05"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M680.39,605.54a43.21,43.21,0,0,0,.88,7.76q4.63,26,9.88,51.85c.31,1.5.61,3,1,4.46a36.08,36.08,0,0,0,6.69,13.16c14.56,18.15,15.82,44.5,23.71,66.39.54,1.48,1.07,3,1.64,4.43a110.19,110.19,0,0,0,4.87,10.87,3.14,3.14,0,0,0,1,1.3,3.06,3.06,0,0,0,1.59.3,46.28,46.28,0,0,0,20.52-4.66,4.35,4.35,0,0,0,2.18-1.81,4.47,4.47,0,0,0,.23-2.09c-.22-4.34-.49-8.83-2.56-12.65a26.66,26.66,0,0,0-5-6.12,232.12,232.12,0,0,0-5-40.56c-1.53-6.8-3.43-13.67-7.38-19.42-2.91-4.24-7.09-8.43-6.58-13.55.23-2.25,1.17-5.05-.66-6.37-.8-.58-2-.65-2.52-1.48a2.69,2.69,0,0,1-.35-1.27,31.41,31.41,0,0,1,.64-10.5,54.68,54.68,0,0,0,1.57-6.85,8.62,8.62,0,0,0-1.72-6.61c-.1-4.68,0-9.53-.06-14.2a26.26,26.26,0,0,1,.65-7.92c.36-1.22.9-2.39,1.17-3.64,1-4.49-1.46-9.87,1.44-13.43,1.21-1.47,3.08-2.21,4.66-3.28a17.1,17.1,0,0,0,6.4-9.2,50.69,50.69,0,0,0,1.81-11.26,11.62,11.62,0,0,0,0-2.43,4.73,4.73,0,0,0-.33-1.21c-.9-2-3.33-2.82-5.49-3.34a178.08,178.08,0,0,0-41.9-4.9c-5.22-3.55-8.16-2.28-10.37,1.49a38.57,38.57,0,0,0-2.95,7.2c-1,3.06-1.07,20.15-2.06,23.22C676.74,593.21,680.44,601.36,680.39,605.54Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M774.78,450c.38,2.69-.91,5.33-1,8-.13,2.38.63,4.69,1.06,7,1.68,9.11-1.55,18.34-4.85,27a13.94,13.94,0,0,0-1.15,4.44c-.09,2.83,1.54,5.42,2,8.21.93,5.87-3.4,11.39-3.49,17.33,0,2.74.82,5.52.14,8.17a29.31,29.31,0,0,1-2.34,4.94c-1.39,2.92-1.76,6.24-3.09,9.19-2.39,5.34-7.53,8.82-12.43,12-2.78-.93-5.79-2-7.32-4.53a11.27,11.27,0,0,1-1.28-4c-1.06-6.08-1-12.29-1-18.46a113.8,113.8,0,0,1,.84-15.88c1-6.71,3.17-13.17,4.73-19.76,2-8.32,3-16.91,6-24.89,2.69-7,6.89-13.3,11.3-19.32,1.69-2.3,3-5.59,6.29-5.06A6.86,6.86,0,0,1,774.78,450Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M774.78,450c.38,2.69-.91,5.33-1,8-.13,2.38.63,4.69,1.06,7,1.68,9.11-1.55,18.34-4.85,27a13.94,13.94,0,0,0-1.15,4.44c-.09,2.83,1.54,5.42,2,8.21.93,5.87-3.4,11.39-3.49,17.33,0,2.74.82,5.52.14,8.17a29.31,29.31,0,0,1-2.34,4.94c-1.39,2.92-1.76,6.24-3.09,9.19-2.39,5.34-7.53,8.82-12.43,12-2.78-.93-5.79-2-7.32-4.53a11.27,11.27,0,0,1-1.28-4c-1.06-6.08-1-12.29-1-18.46a113.8,113.8,0,0,1,.84-15.88c1-6.71,3.17-13.17,4.73-19.76,2-8.32,3-16.91,6-24.89,2.69-7,6.89-13.3,11.3-19.32,1.69-2.3,3-5.59,6.29-5.06A6.86,6.86,0,0,1,774.78,450Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.05"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M703.71,391.36a58.23,58.23,0,0,1,5.33,11,25.18,25.18,0,0,0,6.05.73c7.92,0,13.53-4.5,18.18-10.19.4-1.83,2.91-3.53,2.63-5-.37-1.9-2.16-1.52-3.77-1.41a138.9,138.9,0,0,0-14.66,1.89C716.2,388.61,703.89,391.68,703.71,391.36Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("circle", {
+              attrs: { cx: "619.14", cy: "316.8", r: "25.37", fill: "#ee8e9e" }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M683,558.8c4.39-.26,8.81-.09,13.22.09a45.18,45.18,0,0,1,8.21.84c3.33.76,6.45,2.28,9.73,3.23,5.27,1.53,10.82,1.6,16.27,2.13a93.74,93.74,0,0,1,10.66,1.67,4.73,4.73,0,0,0-.33-1.21c-.9-2-3.33-2.82-5.49-3.34a178.08,178.08,0,0,0-41.9-4.9C688.18,553.76,685.24,555,683,558.8Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M700.32,418.55c1.11,1.28,2.59,2.69,4.23,2.28a6,6,0,0,0,1.65-.89c2.92-1.88,6.51-2.32,9.95-2.84a148,148,0,0,0,20.51-4.61,20.82,20.82,0,0,1,6.06-1.23c4.3,0,8.11,2.88,10.81,6.23s4.6,7.27,7.25,10.66c1.88,2.42,4.12,4.55,5.88,7.06,4.45,6.33,5.4,14.59,4.25,22.24s-4.2,14.86-7.23,22a75.83,75.83,0,0,1-5.9,11.91c1,5.81.48,12.46-2.28,17.67-.9,1.7-2,3.35-2.3,5.25a13.09,13.09,0,0,0,.16,3.85l1.29,9.19c.39,2.8.78,5.6,1.29,8.37.93,5.09,2.2,10.61-.16,15.21-2.82,5.51.15,12.57-.6,18.72a93.82,93.82,0,0,0-24.72-5.87c-5.45-.54-11-.61-16.27-2.14-3.28-1-6.4-2.47-9.73-3.23a45.18,45.18,0,0,0-8.21-.84c-6.08-.24-12.2-.49-18.22.41-.49.07-1.08.11-1.37-.28a1.3,1.3,0,0,1-.19-.72,12.16,12.16,0,0,1,1.56-6.46c.77-1.35,1.83-2.68,1.8-4.24a6.25,6.25,0,0,0-.53-2.1L676.64,537c-2.25-6-1.18-13-2.35-19.28a113.27,113.27,0,0,1-1.75-14.92c-.22-4.28-.09-8.91,2.5-12.33a14.32,14.32,0,0,0,2-2.71,8.41,8.41,0,0,0,.46-3.24q.09-12.84-.7-25.67c2.25-4,4.59-8.18,6.85-12.22,2.62-4.71,5.27-9.51,6.33-14.79.7-3.5.68-7.09,1.18-10.62a3.56,3.56,0,0,1,4.5-3.56A15.75,15.75,0,0,1,700.32,418.55Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M607.43,403.31a11.14,11.14,0,0,0,5.5,2.23c2.61.18,8.17-1.36,9.8-3.6a6.52,6.52,0,0,0,.93-3.75,4.13,4.13,0,0,0-1.09-.21,27.87,27.87,0,0,0-8.51.34,9.53,9.53,0,0,0-6.61,5S607.44,403.3,607.43,403.31Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M691.85,458.18c-1.55,1.92-3.16,3.9-5.35,5-2.52,1.31-5.49,1.34-8.33,1.28a198.55,198.55,0,0,1-34.8-3.83,21.84,21.84,0,0,1-3.83-1,20.3,20.3,0,0,1-3.88-2.42c-3.77-2.71-7.6-5.48-10.47-9.14A30.67,30.67,0,0,1,619,432.87c-2.73-2.52-4.18-6.09-5.54-9.54a14.38,14.38,0,0,1-1.27-4.64c-.07-1.64,1-3.36.71-5a13.17,13.17,0,0,0-4-7.24,2.59,2.59,0,0,1-1-1.27,2,2,0,0,1,.23-1.24,9.59,9.59,0,0,1,6.61-5,28.26,28.26,0,0,1,8.52-.34,19.67,19.67,0,0,1,2.78.74l2,5.22a6.62,6.62,0,0,0,1.3,2.39,11.49,11.49,0,0,0,1.4,1.1,8.06,8.06,0,0,1,2.8,7,7.56,7.56,0,0,1,4.47,9.34,8.92,8.92,0,0,1,6.54,5.76,4.33,4.33,0,0,0,.86,1.79,3.47,3.47,0,0,0,2.28.71c2.24.13,4.2,1.9,6.24.94a12.64,12.64,0,0,1,7.4-1,6,6,0,0,0,1.58.14,4.37,4.37,0,0,0,1.3-.45,10.3,10.3,0,0,1,2.94-1.16,2.74,2.74,0,0,1,2.78,1.08c.72-.78,1.14-1.78,1.79-2.62a2.87,2.87,0,0,1,2.7-1.29c-.67-.6,0-1.8.9-2a12.3,12.3,0,0,1,2.7.1c2.34,0,4.14-2.14,6.42-2.7,2.1-.51,4.89.1,6-1.77.38-.66.46-1.56,1.11-2a2.06,2.06,0,0,1,1.41-.16,13.36,13.36,0,0,1,4.28,1.3c2.2,8.59,1,17.51-.63,26.23A23.19,23.19,0,0,1,691.85,458.18Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M691.91,489l10.93,22c-1.18-2-3.67-2.83-5.64-4.13a15,15,0,0,1-5.39-7.24,44.53,44.53,0,0,1-2.06-8.93c-.22-1.4-.69-3.36,0-4.62C691,486.34,691.4,487.94,691.91,489Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M723.35,507.68c2.47,2.44,5.48,4.23,8.2,6.39,6.33,5,10.85,12,15.26,18.77a29.09,29.09,0,0,1,3.12,5.68c-.52.44-1.29,0-1.8-.47l-8.58-7.54a19.06,19.06,0,0,1-2.86-2.89c-1.49-2-2.15-4.51-3.5-6.61a26,26,0,0,0-5.22-5.32c-2-1.69-11-9.34-8.82-12.32C720.75,504.18,722.05,506.39,723.35,507.68Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M704.61,412.18a25.78,25.78,0,0,1,9.08-3,19,19,0,0,1,5.77-.41c1.79.22,3.5.91,5.3,1,2.52.14,4.94-.88,7.38-1.55s5.25-.92,7.3.55a3.14,3.14,0,0,0,1.59.85,2.76,2.76,0,0,0,1.64-.81,9.36,9.36,0,0,1,11.67.62c4.65,4.36,4.13,12.88,9.58,16.19,1.5.91,3.42,1.39,4.3,2.92A10.39,10.39,0,0,0,769,430a3.82,3.82,0,0,0,1.31.93,25.75,25.75,0,0,1,4.5,2.59,6.41,6.41,0,0,1,2.58,4.33,8.18,8.18,0,0,1-.79,3.65,34.24,34.24,0,0,1-33.25,21.26,5.29,5.29,0,0,1-3.48-1.09,6.64,6.64,0,0,1-1.22-2c-2.57-5.37-7.38-9.34-10.44-14.45-1.82-3.05-3-6.45-4.88-9.45-2.88-4.55-7.25-7.91-11.53-11.16-2.41-1.84-5.1-3.77-8.13-3.64-2.7.11-4.67.26-3.68-3.06A10.65,10.65,0,0,1,704.61,412.18Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M704.61,412.18a25.78,25.78,0,0,1,9.08-3,19,19,0,0,1,5.77-.41c1.79.22,3.5.91,5.3,1,2.52.14,4.94-.88,7.38-1.55s5.25-.92,7.3.55a3.14,3.14,0,0,0,1.59.85,2.76,2.76,0,0,0,1.64-.81,9.36,9.36,0,0,1,11.67.62c4.65,4.36,4.13,12.88,9.58,16.19,1.5.91,3.42,1.39,4.3,2.92A10.39,10.39,0,0,0,769,430a3.82,3.82,0,0,0,1.31.93,25.75,25.75,0,0,1,4.5,2.59,6.41,6.41,0,0,1,2.58,4.33,8.18,8.18,0,0,1-.79,3.65,34.24,34.24,0,0,1-33.25,21.26,5.29,5.29,0,0,1-3.48-1.09,6.64,6.64,0,0,1-1.22-2c-2.57-5.37-7.38-9.34-10.44-14.45-1.82-3.05-3-6.45-4.88-9.45-2.88-4.55-7.25-7.91-11.53-11.16-2.41-1.84-5.1-3.77-8.13-3.64-2.7.11-4.67.26-3.68-3.06A10.65,10.65,0,0,1,704.61,412.18Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.05"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M691.4,779.91c1.84,1.72,4.37,2.47,6.82,3a122.36,122.36,0,0,0,17,2.1l5.54.42c5.41.41,10.83.83,16.27.85a111.67,111.67,0,0,0,20-1.73,1.69,1.69,0,0,0,1.83-2,96.9,96.9,0,0,0-2.46-20.07c-.63-2.71-5.48,3.36-5.7,3.61a5.56,5.56,0,0,1-4.41,2.35c-5.58.3-11.83-3.09-16.27-6.11a21.27,21.27,0,0,0-3-1.87,8.71,8.71,0,0,0-2.44-.69,14.62,14.62,0,0,0-8.3,1.68c-3.33,1.65-6.26,4-9.56,5.73a26.71,26.71,0,0,1-8.57,2.71c-3,.42-6.62.62-8.17,3.23v0C688.65,775.28,689.57,778.2,691.4,779.91Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M691.4,780.91c1.84,1.72,4.37,2.47,6.82,3a122.36,122.36,0,0,0,17,2.1l5.54.42c5.41.41,10.83.83,16.27.85a111.67,111.67,0,0,0,20-1.73,2.2,2.2,0,0,0,1.59-.76,8.86,8.86,0,0,0,1.24-2.27c-.12-6.75-1.94-13.49-3.46-20.07-.63-2.71-5.48,3.36-5.7,3.61a5.56,5.56,0,0,1-4.41,2.35c-5.58.3-11.83-3.09-16.27-6.11a21.27,21.27,0,0,0-3-1.87,8.71,8.71,0,0,0-2.44-.69c.72,4,6.48,8.86,9.45,10.34,6,3,13.16,1.5,19.87,1.85a2.63,2.63,0,0,1,1.41.34c.8.53.85,1.67.83,2.63-.06,1.6-.26,3.48-1.65,4.3a4.8,4.8,0,0,1-2.23.46,315.37,315.37,0,0,1-49.54-1.74,27,27,0,0,1-8.07-1.79,20.68,20.68,0,0,1-4.68-3C687.81,774.77,689.57,779.2,691.4,780.91Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#e8eaf2"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M705.22,376.74c.09,2.62-1.7,7.71,3.21,6.29,2.92-.84,3.75-4.31,7.46-3.54s4.56,5.35,5.82,8.34a16,16,0,0,0,11.56,9.34,6.88,6.88,0,0,0,3.19,0c2.39-.68,3.75-3.15,4.73-5.44a43.11,43.11,0,0,0,2.1-6,26.07,26.07,0,0,0,.76-4.38h0a19.16,19.16,0,0,0,0-3c-.44-6-3.84-11.41-8.19-15.52s-9.62-7.08-14.84-10a21.57,21.57,0,0,0-5.47-2.43,18.06,18.06,0,0,0-5.78-.24,20.08,20.08,0,0,0-7.35,1.73,10.32,10.32,0,0,0-2.59,1.81,7.83,7.83,0,0,0-2.24,3.75c-.94,3.85,1.51,7.32,3.51,10.37C702.89,370.49,705.09,373.36,705.22,376.74Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M622.66,433.05c1.05-2.65,5.45-9.95,4.18-12.47a33.62,33.62,0,0,0-3.36,6C622.65,428.62,623.33,431.36,622.66,433.05Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M701,367.79c-2-3.05-4.46-6.52-3.52-10.38a8.13,8.13,0,0,1,2.86-4.27,7.39,7.39,0,0,0-.73,1.8c-.94,3.86,1.52,7.33,3.52,10.38,1.78,2.7,4,5.58,4.1,8.95.1,2.62-1.69,7.72,3.22,6.29,2.92-.84,3.75-4.31,7.46-3.54s4.56,5.34,5.82,8.34a16,16,0,0,0,11.56,9.34,6.83,6.83,0,0,0,3.18,0A4.65,4.65,0,0,0,740,394a6.39,6.39,0,0,1-3.63,3.2,6.83,6.83,0,0,1-3.18,0,16,16,0,0,1-11.56-9.34c-1.26-3-2.08-7.55-5.82-8.34s-4.54,2.7-7.46,3.54c-4.91,1.43-3.12-3.67-3.22-6.29C705,373.37,702.78,370.49,701,367.79Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M699.91,362.58a22.89,22.89,0,0,0,1.51,2.14,25.67,25.67,0,0,0,3.47,3.6,29.44,29.44,0,0,0,2.34,1.83A36.17,36.17,0,0,0,712,373a86.5,86.5,0,0,0,15.15,5.43l10.13,2.95c1.25.94,3.52,2.64,6,4.39a26.07,26.07,0,0,0,.76-4.38h0a19.16,19.16,0,0,0,0-3c-.44-6-3.84-11.41-8.19-15.52s-9.62-7.08-14.84-10a21.57,21.57,0,0,0-5.47-2.43,18.06,18.06,0,0,0-5.78-.24,20.08,20.08,0,0,0-7.35,1.73,10.32,10.32,0,0,0-2.59,1.81,10,10,0,0,0-1.3,2.75C697.9,358.5,698.78,360.73,699.91,362.58Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M699.91,361.89a23,23,0,0,0,1.51,2.15,25.06,25.06,0,0,0,3.47,3.59,27.41,27.41,0,0,0,2.34,1.84A37.3,37.3,0,0,0,712,372.3a87.32,87.32,0,0,0,15.15,5.43l10.13,2.95c3.54,2.67,15.37,11.43,17.36,10.34,2.34-1.29-10.5-10.38-10.5-10.38l-.59.45c1.88-1.19,2.86-3.93,3.29-6.3a31.74,31.74,0,0,0,.1-12.84c-1-4.19-3.53-8.18-7.37-10.14-1.7-.88-3.76-1.47-5-2.82a3.46,3.46,0,0,1-.49-.65,3.9,3.9,0,0,1-.19-.35,4.34,4.34,0,0,0-.54-1.05c-.7-.81-2-.56-3-.43l-.35,0-.57,0c-3.81.08-7.5-2-11.35-2-4.22,0-7.82,2.44-11.53,4.11l-2.13,1c-2.69,1.25-4.71,2.58-5.82,6.14C697.9,357.81,698.78,360.05,699.91,361.89Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M729.37,346.57a1.85,1.85,0,0,0-.24.86,1.78,1.78,0,0,0,.64,1.36,3,3,0,0,0,1.6.57,10.36,10.36,0,0,0,1.25.1,3.39,3.39,0,0,0,1.64-.28,2.9,2.9,0,0,0,.29-.19,3.46,3.46,0,0,1-.49-.65c-.09.07-.19.05-.57,0a9,9,0,0,1-2-.34,2.61,2.61,0,0,1-.77-.37,2.4,2.4,0,0,1-.73-1.11Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M743.86,380.54a4.84,4.84,0,0,1-1.76.65,5.64,5.64,0,0,1-4.67-.7",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M319.3,466.67c-1.68-11.25-11.89-37.48-11.89-37.48h0c-.18-.79-.38-1.56-.61-2.34-7.25-24.92-17.29-27.13-17.29-27.13l-35.94-7.66a2.85,2.85,0,0,1,.74.71l-.57.09a14.09,14.09,0,0,1-3.15-6.81c-.07-.37-.13-.76-.18-1.15a25.28,25.28,0,0,0-2.06-38c-.37-.29-.75-.58-1.15-.85,1.7-1.8,1.75-4.31.49-6.81-2.84-5.89-9-9.61-15.32-11.42-4.84-1.39-10.09-1.84-14.88-.32a54.27,54.27,0,0,0-7.78,3.61c-4.78,2.39-10,4.27-13.63,8.19a4,4,0,0,0-1.36,3.29,8.89,8.89,0,0,0,1.35,2.39c1,1.79.76,4,.07,6s-1.73,3.76-2.22,5.76-.3,4.35,1.2,5.78a26,26,0,0,0,2.25,1.59,11.68,11.68,0,0,1,2.14,2.4l4.26,5.75a58.36,58.36,0,0,1,5.32,8.11,39.36,39.36,0,0,0,3.3,6.18,9,9,0,0,0,1.42,1.48l-.42-.16a6.45,6.45,0,0,0,4.76,1.83h.22a1.29,1.29,0,0,0,.86-.35l0,.78c.08,2.77.06,5.71-.13,8.47l-.33-.17a2.87,2.87,0,0,0-3.1.33l-33.11,26.55s-7.2,9.85-6.19,26.83l-5.8,25.48s-7.26,21.62-1.68,37.06,8.81,24.27,8.81,24.27,2.24,17.54,5.58,19,4.8,2.21,4.8,2.21l.67,4.19h0s.22.41.61,1.1c2.44,4.24,11.47,19.2,16.72,17.6a67.9,67.9,0,0,1,.85,12.29l5.19,34.86s3.62,9.48,3.4,14.45,4.24,12,4.24,12a23,23,0,0,0-2.23,16.22c2.12,9.26,4.8,52.06,4.8,52.06l3.9,10.37-.11,12.15a11.59,11.59,0,0,1-2.4,5.38c-2.51,2.73-2.34,5.88-8.37,9.6s-9.87,5.13-9.87,10.09a12.93,12.93,0,0,1-.18,2c-.56,3.62-1.65,5.58,9.47,6.64a29.26,29.26,0,0,0,21.75-7.28s1.93-3.48,11-4.88c0,0,3.09-.17,3.26-2.9.06-.94,0-2.75,0-4.73-.15-3.79-.51-8.2-1-8.42s-1.66-4.08-2-5.46h2.51s2.35-17.54,0-28.9-.22-19.41-.22-19.41l-.45-30s-3.12-3.31-.67-9.16,0-34.75,0-34.75.9-10.36,3.46-12.79.13-15.19,0-15.86l4.57,15.31s2,30.44,6.25,36l1.22,13.78s8.7,12.69,7,19.53,1.79,31.54,1.79,31.54V738s-3.91,10.14,1.56,13.78l2.35-.09c-.8.72-1.37,1.81-2.27,2.74-1.05,1.08-1.64,5.17-2,8.69-.28,3-.37,5.54-.37,5.54a9.18,9.18,0,0,0,6.7,4c4.35.25,18.74,11.25,18.74,11.25s14.23,0,17.91-.74l.21-.06a4.8,4.8,0,0,0,2.78-2.27,5.7,5.7,0,0,0,.67-4.16c-.45-2.18-2.18-4.56-6-6.59-9.55-5-11-9.75-11-9.75L296.32,751l.89,0s-.56-9.93,6.24-21.07L303,680.77s2.79-16.88-2-26c0,0-.39-9.7,2.81-12.68S299.55,609,299.55,609s-1.53-16.16-3.37-30.91l0,0c7.53,7.14,15.35-18.58,16.66-23.15l.19,0-.09-.33.09-.33h0s-1.67-6-.45-4.74,4.24-3.31,4.24-3.31-.44-24.6,4.8-37S319.3,466.67,319.3,466.67Zm-22.43,15.65,0-.07c.78,15-.15,47.07-.15,47.07s-1,4.11-2.14,8.95l-.79-30.45h0l-.75-28.68Zm-96-10.35s3.79,47.43,0,54.27c-1.08,1.94-2,5.41-2.74,9.37-1.25-3.29-3.9-11-3-15.11,1.22-5.29-2.46-19.19-2.46-19.52s-.33-7.72,2.35-13.41.89-8.1.89-8.1S198.15,470.2,200.83,472Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "url(#a292624c-a529-40fd-b6b9-058cc3ca33ba)"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M210.06,578.78c-3.3,14.52-16.44-7.44-19.43-12.7-.39-.69-.61-1.1-.61-1.1l1.43-6.68,7.53-3.06a21,21,0,0,1,3.37,2.19C206.47,560.65,212.61,567.53,210.06,578.78Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#a1616a"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M312,555s0,.11-.08.32l-.11.36c-1.28,4.53-8.95,30.06-16.34,23-8.1-7.77-4.16-25.63-4.16-25.63h.05l17-1.75,3.37,3.47s0,0,0,0Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#a1616a"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M302.14,680.6l.43,48.72c-6.67,11.06-6.12,20.92-6.12,20.92l-22,.87c-5.37-3.61-1.53-13.68-1.53-13.68V712.35s-3.4-24.52-1.76-31.31-6.89-19.38-6.89-19.38L263.05,648c-4.16-5.47-6.13-35.69-6.13-35.69l-4.48-15.19c.12.66,2.44,13.39,0,15.74s-3.39,12.7-3.39,12.7,2.41,28.68,0,34.49.65,9.09.65,9.09l.44,29.78s-2.08,8,.22,19.26,0,28.69,0,28.69H226.7l.11-12.15L223,724.39s-2.63-42.47-4.71-51.67a23,23,0,0,1,2.19-16.09s-4.38-7-4.16-11.94S213,630.35,213,630.35l-5.09-34.6A67,67,0,0,0,205.35,576c-3-9.85-7.33-22.77-7.33-22.77l4.94.44,24.95,2.22s60.65-4.08,63.37-.69a11.18,11.18,0,0,1,1.14,3.53c2.72,12.24,6.32,50.56,6.32,50.56s7.34,29.89,4.19,32.84-2.76,12.59-2.76,12.59C304.87,663.85,302.14,680.6,302.14,680.6Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#3f3d56"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M250.87,765.31c-.17,2.72-3.2,2.88-3.2,2.88-8.87,1.39-10.76,4.85-10.76,4.85a28.59,28.59,0,0,1-21.35,7.23c-10.91-1.06-9.84-3-9.29-6.6a12.67,12.67,0,0,0,.18-2c0-4.93,3.77-6.33,9.69-10s5.74-6.82,8.21-9.52,2.71-8,2.71-8c2.79-4.84,9.85.74,9.85.74.33,1.72,10.84,1.48,10.84,1.48s1.4,5.58,2.11,5.91c.48.22.83,4.6,1,8.36C250.91,762.59,250.93,764.38,250.87,765.31Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M250.87,765.31c-.17,2.72-3.2,2.88-3.2,2.88-8.87,1.39-10.76,4.85-10.76,4.85a28.59,28.59,0,0,1-21.35,7.23c-10.91-1.06-9.84-3-9.29-6.6,4.87,1.21,14.2,2.9,19.63-.06,7.56-4.1,13-7,13-7l12-6C250.91,762.59,250.93,764.38,250.87,765.31Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M317.7,779.93a4.8,4.8,0,0,1-2.73,2.25l-.21.06c-3.61.73-17.58.73-17.58.73s-14.12-10.92-18.39-11.17a9,9,0,0,1-6.57-3.94s.08-2.54.36-5.5c.33-3.49.91-7.55,1.94-8.62,1.89-2,2.3-4.68,6.57-3,0,0,6.07-10.69,13.21-2.43l7.4,11.22s1.39,4.68,10.76,9.69c3.75,2,5.45,4.37,5.89,6.53A5.8,5.8,0,0,1,317.7,779.93Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M317.7,779.93c-.84.7-1.76,1.47-2.73,2.25l-.21.06c-3.61.73-17.58.73-17.58.73s-14.12-10.92-18.39-11.17a9,9,0,0,1-6.57-3.94s.08-2.54.36-5.5c4.34,1.31,10.93,3.6,12.7,6.08,2.7,3.77,10.93,9,10.93,9s15.33-1.47,22.14-1.68A5.8,5.8,0,0,1,317.7,779.93Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M258,397.85,237.81,419.2s-24.47-1.81-20.2-9c2.18-3.68,2.52-11.39,2.33-18.09-.18-6.46-.85-12-.85-12S253.42,363,250.79,379a26.3,26.3,0,0,0-.1,9.1C252.19,396.1,258,397.85,258,397.85Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#a1616a"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M250.79,379a26.3,26.3,0,0,0-.1,9.1c-4.58,4.63-10.94,3.61-18,3.61-4.66,0-9.66.07-13.41-2.14-.18-6.47-.22-9.42-.22-9.42S253.42,363,250.79,379Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M258,369a25.3,25.3,0,0,1-25.3,25.29A25.3,25.3,0,0,1,207.43,369,25.3,25.3,0,0,1,258,369Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#a1616a"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M292.42,558.77c-6.29,15-46.81,15.3-46.81,15.3V557.73l-2.45-.16c1.06,4.68-1.49,16.09-1.49,16.09-32,4.52-39.82-13.71-39.82-13.71l1.11-6.24,24.95,2.22s60.65-4.08,63.37-.69A11.18,11.18,0,0,1,292.42,558.77Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M245.61,572.1V555.75l-2.45-.15c1.06,4.67-1.49,16.09-1.49,16.09-24.1,3.4-34.48-6.09-38.14-11a15.24,15.24,0,0,1-1.68-2.72l9.77-55,2.3-81,3.53-14.2.81-6.82v-.08l.09,0,2.49,1.07,14.91,6.45,16.94-12.79.24-.19.85-.64,1.4,1.13,3.48,2.79,11.17,72.1s19.37,55.53,23,77.94c.14.89.26,1.72.35,2.5C295.54,571.72,245.61,572.1,245.61,572.1Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#e1e7ef"
+              }
+            }),
+            _c("circle", {
+              attrs: { cx: "141.62", cy: "349.79", r: "1.44", fill: "#67647e" }
+            }),
+            _c("circle", {
+              attrs: { cx: "142.28", cy: "362.93", r: "1.44", fill: "#67647e" }
+            }),
+            _c("circle", {
+              attrs: { cx: "143.72", cy: "384.19", r: "1.44", fill: "#67647e" }
+            }),
+            _c("circle", {
+              attrs: { cx: "146.1", cy: "407.1", r: "1.44", fill: "#67647e" }
+            }),
+            _c("circle", {
+              attrs: { cx: "147.54", cy: "428.62", r: "1.44", fill: "#67647e" }
+            }),
+            _c("circle", {
+              attrs: { cx: "148.98", cy: "451.53", r: "1.44", fill: "#67647e" }
+            }),
+            _c("circle", {
+              attrs: { cx: "148.4", cy: "474.19", r: "1.44", fill: "#67647e" }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M219.22,511s-1.61,21.07-4.56,27.2-4.27,23.32-4.27,23.32l-6.86-.78a15.24,15.24,0,0,1-1.68-2.72l9.77-55,2.3-81,3.53-14.2.81-6.82.1,0a2.79,2.79,0,0,1,2.44,0l.33.17c-.1.28-.2.57-.28.86-2.68,8.38-3.68,23.82-3.68,23.82s3.84,28.25,4.27,41.39S219.22,511,219.22,511Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M202.35,557.43a4.11,4.11,0,0,1-.27.51c-2.66,4.5-9.4,7.35-11.45,8.14-.39-.69-.61-1.1-.61-1.1l1.43-6.68,7.53-3.06A21,21,0,0,1,202.35,557.43Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M184.11,449.91l-6.24,3.72-5.69,25.3s-7.12,21.45-1.65,36.78,8.65,24.09,8.65,24.09,2.19,17.41,5.48,18.83,4.71,2.19,4.71,2.19L190,565s8.91-3,12.07-8.35-2.32-18.58-2.32-18.58-4.71-11.28-3.51-16.53-2.4-19-2.4-19.38-.33-7.67,2.29-13.31.88-8,.88-8l-1.64-16.1Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M292.94,554s-16.53,6.24-21.79.77-4.71-31.1-4.71-31.1-5-47.29-8.21-55.07-1.53-63.83-1.53-63.83-2.14-7.25-4-9.14a2.21,2.21,0,0,0-.39-.33l.63.14,2.25.49,3.48,2.79,11.17,72.1s19.37,55.53,23,77.94Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M312,555.68l-.19,0c-2.07.27-20.45,2.49-20.52-1.34a11.55,11.55,0,0,1,.07-1.32l17-1.75,3.37,3.47s0,0,0,0c.06.22.11.42.16.57Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M294.37,424.58l12.08,6.3s10,26,11.67,37.21c0,0,7.45,29.91,2.3,42.22s-4.7,36.72-4.7,36.72-3,4.49-4.17,3.28S312,555,312,555s-20.63,2.74-20.72-1.31S296,530.28,296,530.28s1.31-46.1-.55-53.33S294.37,424.58,294.37,424.58Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M258.34,473.67s-6.78,16.64-9,17.74.43,5.47.43,5.47S262.18,479.58,258.34,473.67Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M254.29,415.31c.08-.32-8.1,8-10.29,9.27S252,424.51,254.29,415.31Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M231.52,472.36s-12.48,8.07-10.84,11.26S231.52,472.36,231.52,472.36Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d: "M254.18,590.16s10.63,6.84,27.16,8.54Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M228.67,606.59S238.53,619,243,619.29,228.67,606.59,228.67,606.59Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M242.47,655.09c-.44.22-5.59,11.17-10.84,11.5S242.47,655.09,242.47,655.09Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M288.12,679.07s9.77-2.19,11.94,4.82C300.06,683.89,299.4,681.7,288.12,679.07Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M281.56,719.14s11.82-2.41,14.34.88S281.56,719.14,281.56,719.14Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M248.09,724.72c0,.11-12,2.41-11.57,3.95s12.85,1.31,13.28-1.1A2.29,2.29,0,0,0,248.09,724.72Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M277.61,735.13s19.79-2.41,18.54,1.75S277.61,735.13,277.61,735.13Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M174,491.41c.11.33,13,2.08,14.78,6.24,0,0-12.7-5.91-14.67-5.91",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M192.21,525.24s-10.73,3.39-10,8.54S181.16,531.38,192.21,525.24Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M187.21,551.3s3.91-5.37,7.63-4.38S187.21,551.3,187.21,551.3Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M248.5,349.18a6.17,6.17,0,0,1-1.26.94c-3.11,1.8-4,4.58-5.44,7.78-1.36,2.93-2.88,6-5.64,7.7-3.56,2.15-8.26,1.36-12,3.23a9.35,9.35,0,0,0-4.95,9.16,26.48,26.48,0,0,0,1,4.19,29.51,29.51,0,0,1,1.13,9.11,1.23,1.23,0,0,1,0,.27,25.29,25.29,0,1,1,27.1-42.38Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M247.84,341.57c-2.78-5.84-8.82-9.54-15-11.34-4.74-1.37-9.89-1.82-14.6-.31a53.49,53.49,0,0,0-7.63,3.58c-4.69,2.37-9.85,4.25-13.38,8.14a4,4,0,0,0-1.33,3.26,8.67,8.67,0,0,0,1.32,2.37c1,1.78.74,4,.07,6s-1.7,3.73-2.18,5.72-.29,4.31,1.18,5.73a26.64,26.64,0,0,0,2.2,1.58,11.43,11.43,0,0,1,2.11,2.38l4.17,5.71a58.67,58.67,0,0,1,5.23,8.05,39,39,0,0,0,3.24,6.13c1.39,1.85,3.56,3.33,5.87,3.13a1.12,1.12,0,0,0,.92-.44,1.26,1.26,0,0,0,.12-.58,30.17,30.17,0,0,0-1.13-9.11,25.22,25.22,0,0,1-1.06-4.19,9.35,9.35,0,0,1,5-9.16c3.72-1.87,8.42-1.07,12-3.22,2.76-1.67,4.28-4.77,5.64-7.71,1.49-3.2,2.32-6,5.44-7.78S249.38,344.64,247.84,341.57Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d: "M236.51,755s3.85,4.93,2.86,7.72S236.51,755,236.51,755Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M288.85,767.29s.86-6.61,4.31-6.67,3.61-.36,6.24.65,5.1,2.59,4.32,2.83-4.54-3.79-8.37-1.74A27.68,27.68,0,0,0,288.85,767.29Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M225,416.7l10.8-7.6s-15.85-9.36-17.74-8.05-3.18,13.15-3.18,13.15Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M224.92,416.2l10.84-7.76s-15.85-9.36-17.74-8-3.18,13.8-3.18,13.8Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#e1e7ef"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M224.92,416.2l10.84-7.76s-15.85-9.36-17.74-8-3.18,13.8-3.18,13.8Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.03"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M219.82,400.48l-.33-.16a2.81,2.81,0,0,0-3,.32L184,427s-7.06,9.77-6.08,26.63L197,480.79s2.19-9.2,4.82-7.45c0,0,3.72,47.08,0,53.87s-5.37,32.19-5.37,32.19l12.59,1.42s1.32-17.19,4.27-23.32,4.57-27.19,4.57-27.19,2.66-30.62,2.22-43.76-4.27-41.38-4.27-41.38S216.93,408.61,219.82,400.48Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d: "M252.19,411.89l-13.51-5s17.2-18.83,19.34-8.38Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d: "M252.19,411.23l-13.51-5s17.2-18.84,19.34-8.39Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#e1e7ef"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d: "M252.19,411.23l-13.51-5s17.2-18.84,19.34-8.39Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.03"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d: "M251.75,395.22a.77.77,0,0,1,.56.11Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M253.06,393.9l35.83,7.73s9.85,2.19,17,26.93-9.74,55.06-9.74,55.06l-3.73-3.16,1.87,72.26s-16.54,6.24-21.79.77-4.71-31.1-4.71-31.1-5-47.3-8.21-55.07S258,403.49,258,403.49,255.06,393.47,253.06,393.9Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#303d5c"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M285.83,440c-.51.47-1.1,22.33,1.09,39a212.24,212.24,0,0,0,6.21,30l-3.25-66.68S287.36,438.52,285.83,440Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M281.45,421.12c.87.54,4.7,9.63,2.95,13.35S281.45,421.12,281.45,421.12Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M247.63,341.57a19.64,19.64,0,0,0-7.88-8.25,18.77,18.77,0,0,1,5.91,6.94c1.53,3.07,1.09,6.15-1.92,7.89s-4,4.57-5.44,7.78c-1.36,2.93-2.87,6-5.64,7.7-3.56,2.15-8.26,1.36-12,3.23a9.34,9.34,0,0,0-4.95,9.16,26.76,26.76,0,0,0,1,4.19,29.51,29.51,0,0,1,1.13,9.11,1.14,1.14,0,0,1-.12.58,1.11,1.11,0,0,1-.92.44,5.45,5.45,0,0,1-2.7-.5,6.27,6.27,0,0,0,4.67,1.81.9.9,0,0,0,1-1,29.85,29.85,0,0,0-1.12-9.11,25.22,25.22,0,0,1-1.06-4.19,9.35,9.35,0,0,1,4.95-9.16c3.71-1.87,8.41-1.07,12-3.22,2.77-1.67,4.28-4.77,5.64-7.71,1.5-3.2,2.33-6,5.44-7.78S249.16,344.64,247.63,341.57Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("ellipse", {
+              attrs: {
+                cx: "519.6",
+                cy: "773.94",
+                rx: "41",
+                ry: "5.63",
+                fill: "#4285f4",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M632.17,827.14a11.66,11.66,0,0,0,3.84-5.79c.49-2.3-.49-5.05-2.68-5.89-2.46-.94-5.09.76-7.08,2.49s-4.28,3.68-6.89,3.32a10.47,10.47,0,0,0,3.24-9.81,4,4,0,0,0-.9-2c-1.36-1.46-3.84-.84-5.48.31-5.2,3.66-6.65,10.72-6.67,17.08-.53-2.29-.09-4.68-.1-7s-.66-5-2.64-6.23a8,8,0,0,0-4-.94c-2.34-.09-4.94.14-6.54,1.85-2,2.13-1.47,5.69.26,8s4.35,3.8,6.76,5.42a14.92,14.92,0,0,1,4.84,4.61,4.83,4.83,0,0,1,.36.83h14.65A41.11,41.11,0,0,0,632.17,827.14Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#4285f4"
+              }
+            }),
+            _c("ellipse", {
+              attrs: {
+                cx: "29.25",
+                cy: "739.88",
+                rx: "29.14",
+                ry: "4",
+                fill: "#4285f4",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M133.16,787A11.71,11.71,0,0,0,137,781.2c.49-2.29-.48-5.05-2.68-5.89-2.46-.94-5.09.77-7.08,2.49s-4.28,3.68-6.89,3.32a10.45,10.45,0,0,0,3.24-9.81,4,4,0,0,0-.9-2c-1.36-1.46-3.84-.84-5.47.31-5.2,3.66-6.65,10.72-6.68,17.08-.53-2.29-.09-4.68-.1-7s-.66-5-2.64-6.23a7.94,7.94,0,0,0-4-.94c-2.34-.09-4.94.15-6.54,1.85-2,2.13-1.47,5.69.26,8s4.35,3.81,6.77,5.42a15,15,0,0,1,4.83,4.61,4.83,4.83,0,0,1,.36.83h14.65A41.06,41.06,0,0,0,133.16,787Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#4285f4"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M830.85,714.6s5.5,7.19-2.53,18-14.65,20-12,26.77c0,0,12.11-20.15,22-20.43S841.7,726.72,830.85,714.6Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#4285f4"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M830.85,714.6a9,9,0,0,1,1.13,2.26c9.62,11.3,14.74,21.85,5.49,22.11-8.61.25-18.94,15.65-21.42,19.54a7.16,7.16,0,0,0,.3.89s12.11-20.15,22-20.43S841.7,726.72,830.85,714.6Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M841.07,723.76c0,2.53-.29,4.58-.64,4.58s-.63-2.05-.63-4.58.35-1.34.7-1.34S841.07,721.23,841.07,723.76Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#ffd037"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M844.57,726.78c-2.22,1.21-4.15,1.94-4.32,1.63s1.49-1.53,3.71-2.74,1.35-.33,1.52,0S846.79,725.57,844.57,726.78Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#ffd037"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M801.84,714.6s-5.5,7.19,2.53,18,14.65,20,12,26.77c0,0-12.12-20.15-22-20.43S791,726.72,801.84,714.6Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#4285f4"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M801.84,714.6a9,9,0,0,0-1.13,2.26c-9.62,11.3-14.74,21.85-5.49,22.11,8.61.25,18.94,15.65,21.42,19.54a9.24,9.24,0,0,1-.29.89s-12.12-20.15-22-20.43S791,726.72,801.84,714.6Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.1"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M791.62,723.76c0,2.53.29,4.58.64,4.58s.63-2.05.63-4.58-.35-1.34-.7-1.34S791.62,721.23,791.62,723.76Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#ffd037"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M788.12,726.78c2.22,1.21,4.16,1.94,4.32,1.63s-1.49-1.53-3.71-2.74-1.35-.33-1.52,0S785.9,725.57,788.12,726.78Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#ffd037"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M793.37,758.46s15.36-.48,20-3.77,23.63-7.23,24.78-2,23.08,26.29,5.74,26.43-40.29-2.7-44.91-5.51S793.37,758.46,793.37,758.46Z",
+                transform: "translate(-95.95 -60.22)",
+                fill: "#a8a8a8"
+              }
+            }),
+            _c("path", {
+              attrs: {
+                d:
+                  "M844.19,777.33c-17.34.14-40.29-2.7-44.91-5.51-3.52-2.14-4.92-9.83-5.39-13.38l-.52,0s1,12.38,5.6,15.2,27.57,5.65,44.91,5.51c5,0,6.73-1.82,6.64-4.45C849.82,776.31,847.91,777.3,844.19,777.33Z",
+                transform: "translate(-95.95 -60.22)",
+                opacity: "0.2"
+              }
+            })
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2ce50e5a", module.exports)
+  }
+}
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(205)
+/* template */
+var __vue_template__ = __webpack_require__(206)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -74485,7 +75920,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 198 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74514,7 +75949,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 199 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -74557,132 +75992,10 @@ if (false) {
 }
 
 /***/ }),
-/* 200 */
+/* 207 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(217)
-/* template */
-var __vue_template__ = __webpack_require__(218)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/Developer.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5932c622", Component.options)
-  } else {
-    hotAPI.reload("data-v-5932c622", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 217 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 218 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-12" },
-        [
-          _c("passport-clients"),
-          _vm._v(" "),
-          _c("passport-authorized-clients"),
-          _vm._v(" "),
-          _c("passport-personal-access-tokens")
-        ],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5932c622", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

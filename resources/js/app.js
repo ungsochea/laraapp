@@ -11,6 +11,9 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
+import Gate from "./Gate";
+Vue.prototype.$gate=new Gate(window.user);
+
 window.Form=Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -83,6 +86,11 @@ Vue.component(
 Vue.component(
   'passport-personal-access-tokens',
   require('./components/passport/PersonalAccessTokens.vue')
+);
+
+Vue.component(
+  'not-found',
+  require('./components/NotFound.vue')
 );
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));

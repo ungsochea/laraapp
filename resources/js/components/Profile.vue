@@ -10,7 +10,7 @@
                 <h5 class="widget-user-desc">Web Designer</h5>
               </div>
               <div class="widget-user-image">
-                <img class="img-circle" src="/img/user3-128x128.jpg" alt="User Avatar">
+                <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar">
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -172,7 +172,8 @@
                       <div class="form-group">
                         <label for="inputName" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                          <input type="text" v-model="form.name" class="form-control" id="inputName" placeholder="Name">
+                          <input type="text" v-model="form.name" class="form-control" id="inputName" placeholder="Name" :class="{ 'is-invalid': form.errors.has('name') }">
+                          <has-error :form="form" field="name"></has-error>
                         </div>
                       </div>
 
@@ -180,15 +181,18 @@
                         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                         <div class="col-sm-10">
-                          <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email">
+                          <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email" :class="{ 'is-invalid': form.errors.has('email') }">
+                          <has-error :form="form" field="email"></has-error>
                         </div>
                       </div>
                      
                       <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                        <label for="inputExperience" class="col-sm-2 control-label">bio</label>
 
                         <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                          <textarea class="form-control" v-model="form.bio" id="inputExperience" placeholder="bio" :class="{ 'is-invalid': form.errors.has('bio') }">
+                        </textarea>
+                        <has-error :form="form" field="bio"></has-error>
                         </div>
                       </div>
 
@@ -199,15 +203,14 @@
                           <input type="file" @change="updateProfile" class="form-input" name="photo">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+                     <div class="form-group"> 
+                       <label for="inputSkills" class="col-sm-2 control-label">Password</label>
+                       <div class="col-sm-10">
+                         <input v-model="form.password" type="password" name="password" placeholder="Password" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                        <has-error :form="form" field="password"></has-error>
+                        </div>                   
+                        
+                    </div>
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                           <button type="submit" @click.prevent="updateInfo" class="btn btn-danger">Update</button>
@@ -243,33 +246,59 @@
         },
         methods:{
             updateInfo(){
+                this.$Progress.start();
                  this.form.put('api/profile/')
                 // axios.put('api/profile/'+this.form.id)
                 .then(()=>{
+                  Fire.$emit('AfterCreate');
+                  this.$$Progress.finish();
 
                 })
                 .catch(()=>{
-
+                    this.$Progress.fail();
                 })
             },
             updateProfile(e){
                 // console.log('pic');
                 let file=e.target.files[0];
-                // console.log(file);
+                // console.log(result);
                 let reader=new FileReader();
-                reader.onloadend=(file)=>{
-                    // console.log('RESULT',reader.result)
-                    this.form.photo=reader.result;
-                }                
-                reader.readAsDataURL(file);                
-            }
+
+                if(file['size']<2111777){ //check size file
+                  reader.onloadend=(file)=>{
+                      // console.log('RESULT',reader.result)
+                      this.form.photo=reader.result;
+                  }                
+                  reader.readAsDataURL(file);  
+                }else{
+                  swal({
+                    type:'error',
+                    title:'Oops...',
+                    text:'You are uploading a large file',
+                  })
+                }
+                
+            },
+            getProfilePhoto(){
+              let photo=(this.form.photo.length>200)?this.form.photo:"img/profile/"+this.form.photo;
+              // return "img/profile/"+this.form.photo;
+              return photo;
+            },
+            loadProfile(){
+              axios.get("api/profile").then(({data})=>(this.form.fill(data)));
+            },
         },
         mounted() {
             console.log('Component mounted.')
         },
+       
         created(){
-            axios.get("api/profile")
-            .then(({data})=>(this.form.fill(data)));
+            // axios.get("api/profile").then(({data})=>(this.form.fill(data)));
+            this.loadProfile();
+            Fire.$on('AfterCreate',()=>{
+                    this.loadProfile();
+                });
+            // Fire.$emit('AfterCreate');
         }
     }
 </script>
