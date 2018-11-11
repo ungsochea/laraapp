@@ -25,7 +25,8 @@ let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue') },
     { path: '/developer', component: require('./components/Developer.vue') },
     { path: '/profile', component: require('./components/Profile.vue') },
-    { path: '/users', component: require('./components/Users.vue') }
+    { path: '/users', component: require('./components/Users.vue') },
+    { path: '*', component: require('./components/NotFound.vue') }
   ]
 
   const router = new VueRouter({
@@ -66,6 +67,9 @@ window.toast=toast;
 //Load data when after create
 window.Fire=new Vue();
 
+// Datatable
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -97,5 +101,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    data:{
+      search:''
+    },
+    methods:{
+      searchit:_.debounce(()=>{
+        Fire.$emit('searching');
+      },1000),
+
+      printme(){
+        window.print();
+      }       
+      
+    }
 });

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-       <div class="row mt-5" v-if="$gate.isAdmin()">
+       <div class="row mt-5" v-if="$gate.isAdminOrAuthor()">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
@@ -22,7 +22,7 @@
                     <th>Register</th>
                     <th>Modify</th>                    
                   </tr>
-                  <tr v-for="user in users" :key="user.id">
+                  <tr v-for="user in users.data" :key="user.id">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
@@ -43,10 +43,13 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            <div class="card-footer">
+                <pagination :data="users" @pagination-change-page="getResults"></pagination>
+            </div>
           </div>
         </div>
 
-        <div v-if="!$gate.isAdmin()">
+        <div v-if="!$gate.isAdminOrAuthor()">
             <not-found></not-found>
         </div>
 
@@ -82,7 +85,7 @@
                             <option value="">Select User Role</option>
                             <option value="admin">Admin</option>
                             <option value="user">Standar User</option>
-                            <option author="admin">Author</option>                        
+                            <option value="author">Author</option>                        
                         </select>
                         <has-error :form="form" field="type"></has-error>
                     </div>
@@ -121,6 +124,12 @@
             }
         },
         methods:{
+            getResults(page = 1) {
+                axios.get('/api/user?page=' + page)
+                    .then(response => {
+                        this.users = response.data;
+                    });
+            },
             updateUser(id){
                 // console.log('edting');
                 this.$Progress.start();
@@ -179,8 +188,8 @@
                 })
             },
             loadUers(){
-                if(this.$gate.isAdmin()){
-                     axios.get("api/user").then(({data})=>(this.users=data.data));
+                if(this.$gate.isAdminOrAuthor()){
+                     axios.get("api/user").then(({data})=>(this.users=data));
                 }
                
             },
@@ -206,6 +215,16 @@
            
         },
          created(){
+                Fire.$on('searching',()=>{
+                    let query=this.$parent.search;
+                    axios.get('/api/findUser?q='+query)
+                    .then((data)=>{
+                        this.users=data.data
+                    })
+                    .catch(()=>{
+
+                    })
+                });
                 this.loadUers();
                 Fire.$on('AfterCreate',()=>{
                     this.loadUers();
